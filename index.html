@@ -280,6 +280,7 @@
             border-radius: 8px;
             padding: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
         }
 
         .project-card:hover {
@@ -329,6 +330,112 @@
 
         .btn-secondary:hover {
             background-color: #5a6268;
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-demo {
+            background-color: #28a745;
+        }
+
+        .btn-demo:hover {
+            background-color: #218838;
+        }
+
+        .btn-upload {
+            background-color: #fd7e14;
+        }
+
+        .btn-upload:hover {
+            background-color: #e56b02;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        /* File Input Styling */
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-upload input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* Project Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: var(--section-bg);
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+            animation: modalFadeIn 0.4s;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 5px;
         }
 
         /* Footer */
@@ -400,6 +507,15 @@
 
             .contact-info div {
                 min-width: 100%;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .modal-iframe {
+                height: 300px;
             }
         }
 
@@ -509,6 +625,13 @@
         .social-icons a:hover {
             color: #ccc;
         }
+        
+        /* Upload filename display */
+        .file-name {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -521,6 +644,7 @@
                 <div class="buttons">
                     <a href="#contact" class="btn">Contact Me</a>
                     <a href="CV-Muhammed-Saleem.pdf" class="btn btn-secondary" id="downloadCV">Download CV</a>
+                    <a href="#projects" class="btn btn-demo">Project Demos</a>
                 </div>
             </div>
         </div>
@@ -547,6 +671,7 @@
             <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#demos" class="btn-demo">Project Demos</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -577,6 +702,14 @@
                         <li>Created web scraping and browser automation tools.</li>
                         <li>Developed frontend interfaces using Flask framework.</li>
                     </ul>
+                    <div class="buttons">
+                        <div class="file-upload">
+                            <button class="btn btn-upload btn-small"><i class="fas fa-file-upload"></i> Upload Documentation</button>
+                            <input type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" onchange="displayFileName(this, 'bosch-file')">
+                        </div>
+                        <span id="bosch-file" class="file-name"></span>
+                        <button class="btn btn-demo btn-small" onclick="openModal('bosch-project-modal')"><i class="fas fa-desktop"></i> View Project Demo</button>
+                    </div>
                 </div>
 
                 <div class="timeline-item">
@@ -593,6 +726,14 @@
                         <li>Process redesigning using HTML and CSS to improve internal web tools.</li>
                         <li>Conducted software compatibility testing across multiple platforms and environments.</li>
                     </ul>
+                    <div class="buttons">
+                        <div class="file-upload">
+                            <button class="btn btn-upload btn-small"><i class="fas fa-file-upload"></i> Upload Documentation</button>
+                            <input type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" onchange="displayFileName(this, 'bsh-working-file')">
+                        </div>
+                        <span id="bsh-working-file" class="file-name"></span>
+                        <button class="btn btn-demo btn-small" onclick="openModal('bsh-working-modal')"><i class="fas fa-desktop"></i> View Project Demo</button>
+                    </div>
                 </div>
 
                 <div class="timeline-item" id="jacobs">
@@ -613,7 +754,14 @@
                         <li>Visited multiple production plants and demonstrated proficiency in reading and interpreting P&ID diagrams.</li>
                         <li>Contributed to sustainability initiatives including analysis of coffee residue pyrolysis and hydrogen energy projects.</li>
                     </ul>
-                </div>                    </ul>
+                    <div class="buttons">
+                        <div class="file-upload">
+                            <button class="btn btn-upload btn-small"><i class="fas fa-file-upload"></i> Upload Documentation</button>
+                            <input type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" onchange="displayFileName(this, 'jacobs-file')">
+                        </div>
+                        <span id="jacobs-file" class="file-name"></span>
+                        <button class="btn btn-demo btn-small" onclick="openModal('jacobs-modal')"><i class="fas fa-desktop"></i> View Project Demo</button>
+                    </div>
                 </div>
 
                 <div class="timeline-item" id="airport">
@@ -624,6 +772,13 @@
                         <li>Maintained and monitored fire engines and other mechanical equipment.</li>
                         <li>Provided technical support and prepared reports.</li>
                     </ul>
+                    <div class="buttons">
+                        <div class="file-upload">
+                            <button class="btn btn-upload btn-small"><i class="fas fa-file-upload"></i> Upload Documentation</button>
+                            <input type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" onchange="displayFileName(this, 'airport-file')">
+                        </div>
+                        <span id="airport-file" class="file-name"></span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -678,7 +833,7 @@
                     </div>
 
                     <div class="skill-category">
-                        <h4>Tools & Technologies</h4>
+                <h4>Tools & Technologies</h4>
                         <ul class="skill-list">
                             <li>Jira & Confluence</li>
                             <li>Power Automate</li>
@@ -727,21 +882,108 @@
                     <div class="project-card">
                         <h4 class="project-title">AI-Driven Chatbot Development</h4>
                         <p class="project-desc">Developed an advanced chatbot using large language models, RAG, and Elasticsearch for internal knowledge management at Bosch and Siemens.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo btn-small" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-play-circle"></i> View Demo</button>
+                        </div>
                     </div>
 
                     <div class="project-card">
                         <h4 class="project-title">Data Visualization Suite</h4>
                         <p class="project-desc">Created comprehensive dashboards for complex business data using Power BI and DAX, enabling data-driven decision making.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo btn-small" onclick="openModal('data-viz-demo-modal')"><i class="fas fa-play-circle"></i> View Demo</button>
+                        </div>
                     </div>
 
                     <div class="project-card">
                         <h4 class="project-title">Hydrogen Emission Reduction</h4>
                         <p class="project-desc">Contributed to Zero CO2 Emission projects through optimization of hydrogen burners and electrolysers at Jacobs Coffee.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo btn-small" onclick="openModal('hydrogen-demo-modal')"><i class="fas fa-play-circle"></i> View Demo</button>
+                        </div>
                     </div>
 
                     <div class="project-card">
                         <h4 class="project-title">3D Design using Lua Programming</h4>
                         <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo btn-small" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-play-circle"></i> View Demo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h4 class="project-title">Smart Home Automation System</h4>
+                        <p class="project-desc">Developed a prototype smart home system using Arduino and Raspberry Pi that integrates with voice commands and mobile app control.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo btn-small" onclick="openModal('smart-home-demo-modal')"><i class="fas fa-play-circle"></i> View Demo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h4 class="project-title">Predictive Maintenance Model</h4>
+                        <p class="project-desc">Created a machine learning model to predict equipment failures based on sensor data, reducing downtime by 35% in simulated environments.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo btn-small" onclick="openModal('predictive-demo-modal')"><i class="fas fa-play-circle"></i> View Demo</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons" style="margin-top: 30px;">
+                    <a href="#demos" class="btn btn-demo"><i class="fas fa-desktop"></i> View All Project Demos</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="demos">
+            <h3>Project Demos</h3>
+            <p>Below you can find demonstrations of my key projects. Click on any demo to view it in detail.</p>
+            
+            <div class="projects-grid" style="margin-top: 30px;">
+                <div class="project-card">
+                    <h4 class="project-title">AI Chatbot Demo</h4>
+                    <p class="project-desc">See my AI-powered chatbot in action, showcasing natural language processing and retrieval augmented generation capabilities.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo btn-small" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-play-circle"></i> Launch Demo</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h4 class="project-title">Power BI Dashboard</h4>
+                    <p class="project-desc">Interactive demo of business intelligence dashboards created for data-driven decision making.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo btn-small" onclick="openModal('data-viz-demo-modal')"><i class="fas fa-play-circle"></i> Launch Demo</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h4 class="project-title">Hydrogen Energy Project</h4>
+                    <p class="project-desc">View the results of my work on CO2 reduction through hydrogen energy optimization.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo btn-small" onclick="openModal('hydrogen-demo-modal')"><i class="fas fa-play-circle"></i> Launch Demo</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h4 class="project-title">3D Modeling Portfolio</h4>
+                    <p class="project-desc">Gallery of 3D models created using Lua programming and various design tools.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo btn-small" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-play-circle"></i> Launch Demo</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h4 class="project-title">Smart Home System</h4>
+                    <p class="project-desc">Interactive demonstration of my IoT-based smart home automation project.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo btn-small" onclick="openModal('smart-home-demo-modal')"><i class="fas fa-play-circle"></i> Launch Demo</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h4 class="project-title">Predictive Maintenance</h4>
+                    <p class="project-desc">See how my machine learning model predicts equipment failures to reduce downtime.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo btn-small" onclick="openModal('predictive-demo-modal')"><i class="fas fa-play-circle"></i> Launch Demo</button>
                     </div>
                 </div>
             </div>
@@ -779,6 +1021,116 @@
             </div>
         </section>
     </main>
+    
+    <!-- Project Demo Modals -->
+    <div id="chatbot-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('chatbot-demo-modal')">&times;</span>
+            <h3 class="modal-title">AI-Driven Chatbot Demo</h3>
+            <div class="modal-body">
+                <p>This demo showcases my AI chatbot developed at Bosch and Siemens. The chatbot uses large language models, RAG, and Elasticsearch to provide accurate responses to internal knowledge queries.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="chatbot-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual chatbot project.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="data-viz-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('data-viz-demo-modal')">&times;</span>
+            <h3 class="modal-title">Data Visualization Dashboard Demo</h3>
+            <div class="modal-body">
+                <p>This interactive dashboard demonstrates my work with Power BI and data visualization, showing complex business metrics in an easy-to-understand format.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="data-viz-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual Power BI dashboard.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="hydrogen-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('hydrogen-demo-modal')">&times;</span>
+            <h3 class="modal-title">Hydrogen Emission Reduction Project</h3>
+            <div class="modal-body">
+                <p>This demonstration shows the impact of my work on hydrogen energy solutions at Jacobs Coffee, including CO2 emission reduction metrics and system efficiency improvements.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="hydrogen-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual project data.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="3d-design-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('3d-design-demo-modal')">&times;</span>
+            <h3 class="modal-title">3D Design Portfolio</h3>
+            <div class="modal-body">
+                <p>This gallery showcases my 3D modeling work using Lua programming and various design tools, including the centrifugal pump and gear systems I've designed.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="3d-design-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would display my actual 3D models.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="smart-home-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('smart-home-demo-modal')">&times;</span>
+            <h3 class="modal-title">Smart Home Automation System</h3>
+            <div class="modal-body">
+                <p>This interactive demo shows my smart home system prototype, demonstrating IoT connectivity, voice command integration, and mobile app control features.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="smart-home-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual smart home system.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="predictive-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('predictive-demo-modal')">&times;</span>
+            <h3 class="modal-title">Predictive Maintenance Model</h3>
+            <div class="modal-body">
+                <p>This demonstration shows how my machine learning model analyzes sensor data to predict equipment failures before they occur, reducing downtime and maintenance costs.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="predictive-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual predictive maintenance model.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Work Experience Modals -->
+    <div id="bosch-project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('bosch-project-modal')">&times;</span>
+            <h3 class="modal-title">Bosch and Siemens: Chatbot Development</h3>
+            <div class="modal-body">
+                <p>This demonstration showcases my master thesis project at Bosch and Siemens, where I developed an AI-driven chatbot for internal knowledge management.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="bosch-project-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual project.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="bsh-working-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('bsh-working-modal')">&times;</span>
+            <h3 class="modal-title">BSH Working Student Projects</h3>
+            <div class="modal-body">
+                <p>This demo shows examples of my work as a working student at Bosch and Siemens Hausgeräte, including Power BI dashboards and automated business workflows.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="bsh-working-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual project.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="jacobs-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('jacobs-modal')">&times;</span>
+            <h3 class="modal-title">Jacobs Coffee: Project Management</h3>
+            <div class="modal-body">
+                <p>This demonstration showcases my work as a Project Management Intern at Jacobs Coffee, including supplier analysis, quality control processes, and sustainability initiatives.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="jacobs-demo.html"></iframe>
+                <p><em>Note: This is a simulated demo. In a live implementation, this would connect to my actual project.</em></p>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -790,7 +1142,6 @@
             </div>
         </div>
     </footer>
-
     <script>
         // Collapsible sections
         document.querySelectorAll('.collapsible-header').forEach(header => {
@@ -851,6 +1202,67 @@
                 header.style.backgroundColor = 'var(--primary-color)';
                 header.style.animation = 'none';
             };
+        });
+        
+        // Function to display the name of the uploaded file
+        function displayFileName(input, elementId) {
+            const fileName = input.files[0]?.name || '';
+            document.getElementById(elementId).textContent = fileName ? `File selected: ${fileName}` : '';
+            
+            // You could add code here to actually upload the file to a server
+            if (fileName) {
+                // For demonstration purposes only
+                // In a real implementation, you would use AJAX or fetch to upload the file
+                console.log(`File "${fileName}" would be uploaded in a real implementation`);
+            }
+        }
+        
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            // Set the iframe src only when opening to improve performance
+            const iframe = modal.querySelector('.modal-iframe');
+            if (iframe && iframe.getAttribute('src') === 'about:blank') {
+                const dataSrc = iframe.getAttribute('data-src');
+                if (dataSrc) {
+                    iframe.setAttribute('src', dataSrc);
+                }
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+        
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+        
+        // Close modal when clicking outside of modal content
+        window.onclick = function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+        }
+        
+        // Close modal when pressing escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = ''; // Restore scrolling
+                    }
+                });
+            }
         });
     </script>
 </body>
