@@ -1,4 +1,454 @@
-<!DOCTYPE html>
+/* References Section Styles */
+        .references-container {
+            margin-top: 20px;
+        }
+
+        .reference-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .reference-header {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .reference-header h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .reference-date {
+            font-style: italic;
+            color: #666;
+        }
+
+        .reference-content p {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .reference-content h5 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .reference-content h6 {
+            font-size: 1rem;
+            margin: 15px 0 10px 0;
+            color: #444;
+        }
+
+        .reference-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .reference-content li {
+            margin-bottom: 5px;
+        }
+
+        .reference-buttons, .demo-buttons {
+            margin-top: 30px;
+        }
+
+        /* Project Demo Styles */
+        .demos-container {
+            margin-top: 20px;
+        }
+
+        .demo-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .demo-card h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .demo-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .demo-video {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .demo-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .demo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .demo-video:hover .demo-overlay {
+            opacity: 1;
+        }
+
+        .demo-video:hover .demo-img {
+            transform: scale(1.05);
+        }
+
+        .play-btn {
+            font-size: 4rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .demo-description {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .demo-description p {
+            margin-bottom: 15px;
+        }
+
+        .demo-description ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .demo-description li {
+            margin-bottom: 5px;
+        }
+
+        .demo-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .demo-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .demo-link i {
+            margin-right: 5px;
+        }
+
+        .demo-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Dark Mode Adjustments */
+        .dark-mode .reference-card,
+        .dark-mode .demo-card {
+            background-color: #2a2a2a;
+        }
+
+        .dark-mode .demo-link {
+            color: #7bb5e8;
+        }        <section id="demos" style="display: none;">
+            <h3>Project Demos</h3>
+            <div class="demos-container">
+                <div class="demo-card">
+                    <h4>AI Chatbot Development</h4>
+                    <div class="demo-content">
+                        <div class="demo-video">
+                            <img src="chatbot-demo.jpg" alt="Chatbot Demo Screenshot" class="demo-img">
+                            <div class="demo-overlay">
+                                <a href="https://youtu.be/your-chatbot-demo" target="_blank" class="play-btn">
+                                    <i class="fas fa-play-circle"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="demo-description">
+                            <p>This demo showcases the AI-driven chatbot I developed during my master thesis at Bosch and Siemens Hausgeräte. The solution leverages large language models with RAG architecture to provide accurate and context-aware responses from internal company data.</p>
+                            <p>Key features demonstrated:</p>
+                            <ul>
+                                <li>Natural language understanding for complex queries</li>
+                                <li>Integration with Elasticsearch for semantic search</li>
+                                <li>Knowledge retrieval from multiple data sources</li>
+                                <li>Context retention across conversation turns</li>
+                            </ul>
+                            <div class="demo-links">
+                                <a href="https://github.com/yourusername/chatbot-project" target="_blank" class="demo-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="https://youtu.be/your-chatbot-demo" target="_blank" class="demo-link"><i class="fab fa-youtube"></i> Watch Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="demo-card">
+                    <h4>Power BI Dashboard Suite</h4>
+                    <div class="demo-content">
+                        <div class="demo-video">
+                            <img src="powerbi-demo.jpg" alt="Power BI Dashboard Screenshot" class="demo-img">
+                            <div class="demo-overlay">
+                                <a href="https://youtu.be/your-powerbi-demo" target="_blank" class="play-btn">
+                                    <i class="fas fa-play-circle"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="demo-description">
+                            <p>This demo presents the data visualization dashboard suite I developed for the Business Excellence department at Bosch and Siemens. The dashboards translate complex datasets into intuitive visualizations for business decision-making.</p>
+                            <p>Featured components:</p>
+                            <ul>
+                                <li>Interactive KPI monitoring system</li>
+                                <li>Advanced DAX formulas for data transformation</li>
+                                <li>Multi-dimensional data analysis capabilities</li>
+                                <li>Automated refresh with direct database connections</li>
+                            </ul>
+                            <div class="demo-links">
+                                <a href="https://github.com/yourusername/powerbi-examples" target="_blank" class="demo-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="https://youtu.be/your-powerbi-demo" target="_blank" class="demo-link"><i class="fab fa-youtube"></i> Watch Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons demo-buttons">
+                <button id="closeDemos" class="btn btn-secondary"><i class="fas fa-times"></i> Close Demos</button>
+            </div>
+        </section>        <section id="references" style="display: none;">
+            <h3>Professional References</h3>
+            <div class="references-container">
+                <div class="reference-card">
+                    <div class="reference-header">
+                        <h4>Jacobs Coffee (JDE Peets)</h4>
+                        <p class="reference-date">11/2022 - 04/2023</p>
+                    </div>
+                    <div class="reference-content">
+                        <p>"Mr Kallan was reliable. Even for difficult problems, he was able to find good solutions and achieved satisfactory work results at all times during the internship."</p>
+                        
+                        <h5>Special success during employment:</h5>
+                        <h6>Hydrogen Projects</h6>
+                        <ul>
+                            <li>Conducted implementation study on hydrogen burners, electrolysers, and roasters</li>
+                            <li>Identified and addressed safety measures for implementing hydrogen systems in plants</li>
+                            <li>Supported development of hydrogen process and equipment standards</li>
+                            <li>Conducted extensive market research to identify potential suppliers for hydrogen systems</li>
+                        </ul>
+                        
+                        <h6>Identification of potential suppliers and preparation of TCO</h6>
+                        <ul>
+                            <li>Identified suitable suppliers for various systems, including hydrogen gas, burners, roasters, electrolysers, pyrolysis equipment, automatic sampling systems and equipment tags</li>
+                            <li>Conducted Total Cost Analysis (TCO) to determine the most suitable supplier for coffee grinders</li>
+                        </ul>
+                        
+                        <h6>Packaging quality check and standardization</h6>
+                        <ul>
+                            <li>Conducted thorough quality checks on packaging of new products</li>
+                            <li>Ensured compliance with brand standards and consistency</li>
+                            <li>Worked with packaging department to successfully introduce new products</li>
+                            <li>Modified packaging manuals and analyzed data from various plants across the world</li>
+                        </ul>
+                        
+                        <p>"Mr Kallan acquired sound specialist knowledge within a short time in the respective departments:"</p>
+                        <ul>
+                            <li>Demonstrating solution-oriented and problem-solving skills</li>
+                            <li>Structured approach to work</li>
+                            <li>Time management</li>
+                            <li>Advancement of research abilities and project management in the technical field</li>
+                            <li>Accurate and comprehensive documentation of engineering data</li>
+                            <li>Ability for effective communication and collaboration in a team setting</li>
+                            <li>Knowledge and understanding of the German work culture and its practices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons reference-buttons">
+                <a href="Reference-Letters.pdf" target="_blank" class="btn"><i class="fas fa-download"></i> Download All Reference Letters</a>
+                <button id="closeReferences" class="btn btn-secondary"><i class="fas fa-times"></i> Close References</button>
+            </div>
+        </section>        /* Dropdown Button for Documents */
+        .dropdown-btn {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content-btn {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content-btn a {
+            color: var(--text-color);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content-btn a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-btn:hover .dropdown-content-btn {
+            display: block;
+        }
+
+        /* References Section */
+        .references-container {
+            margin-top: 20px;
+        }
+
+        .reference-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .reference-header {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .reference-header h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .reference-date {
+            font-style: italic;
+            color: #666;
+        }
+
+        .reference-content p {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .reference-content h5 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .reference-content h6 {
+            font-size: 1rem;
+            margin: 15px 0 10px 0;
+            color: #444;
+        }
+
+        .reference-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .reference-content li {
+            margin-bottom: 5px;
+        }
+
+        .reference-buttons {
+            margin-top: 30px;
+        }
+
+        .dark-mode .reference-card {
+            background-color: #2a2a2a;
+        }
+
+        .dark-mode .dropdown-content-btn {
+            background-color: #333;
+        }
+
+        .dark-mode .dropdown-content-btn a {
+            color: #f5f5f5;
+        }
+
+        .dark-mode .dropdown-content-btn a:hover {
+            background-color: #444;
+        }        <section id="references" style="display: none;">
+            <h3>Professional References</h3>
+            <div class="references-container">
+                <div class="reference-card">
+                    <div class="reference-header">
+                        <h4>Jacobs Coffee (JDE Peets)</h4>
+                        <p class="reference-date">11/2022 - 04/2023</p>
+                    </div>
+                    <div class="reference-content">
+                        <p>"Mr Kallan was reliable. Even for difficult problems, he was able to find good solutions and achieved satisfactory work results at all times during the internship."</p>
+                        
+                        <h5>Special success during employment:</h5>
+                        <h6>Hydrogen Projects</h6>
+                        <ul>
+                            <li>Conducted implementation study on hydrogen burners, electrolysers, and roasters</li>
+                            <li>Identified and addressed safety measures for implementing hydrogen systems in plants</li>
+                            <li>Supported development of hydrogen process and equipment standards</li>
+                            <li>Conducted extensive market research to identify potential suppliers for hydrogen systems</li>
+                        </ul>
+                        
+                        <h6>Identification of potential suppliers and preparation of TCO</h6>
+                        <ul>
+                            <li>Identified suitable suppliers for various systems, including hydrogen gas, burners, roasters, electrolysers, pyrolysis equipment, automatic sampling systems and equipment tags</li>
+                            <li>Conducted Total Cost Analysis (TCO) to determine the most suitable supplier for coffee grinders</li>
+                        </ul>
+                        
+                        <h6>Packaging quality check and standardization</h6>
+                        <ul>
+                            <li>Conducted thorough quality checks on packaging of new products</li>
+                            <li>Ensured compliance with brand standards and consistency</li>
+                            <li>Worked with packaging department to successfully introduce new products</li>
+                            <li>Modified packaging manuals and analyzed data from various plants across the world</li>
+                        </ul>
+                        
+                        <p>"Mr Kallan acquired sound specialist knowledge within a short time in the respective departments:"</p>
+                        <ul>
+                            <li>Demonstrating solution-oriented and problem-solving skills</li>
+                            <li>Structured approach to work</li>
+                            <li>Time management</li>
+                            <li>Advancement of research abilities and project management in the technical field</li>
+                            <li>Accurate and comprehensive documentation of engineering data</li>
+                            <li>Ability for effective communication and collaboration in a team setting</li>
+                            <li>Knowledge and understanding of the German work culture and its practices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons reference-buttons">
+                <a href="Reference-Letters.pdf" target="_blank" class="btn"><i class="fas fa-download"></i> Download All Reference Letters</a>
+                <button id="closeReferences" class="btn btn-secondary"><i class="fas fa-times"></i> Close References</button>
+            </div>
+        </section><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -520,7 +970,14 @@
                 <h2>M.Eng - Mechatronic and Cyber Physical Systems</h2>
                 <div class="buttons">
                     <a href="#contact" class="btn">Contact Me</a>
-                    <a href="CV-Muhammed-Saleem.pdf" class="btn btn-secondary" id="downloadCV">Download CV</a>
+                    <div class="dropdown-btn">
+                        <a class="btn btn-secondary">Documents <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content-btn">
+                            <a href="Resume-Muhammed-Saleem.pdf" target="_blank">Download Resume</a>
+                            <a href="#references" id="viewReferences">View References</a>
+                            <a href="Reference-Letters.pdf" target="_blank">Download References</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -833,12 +1290,21 @@
             });
         });
 
-        // Download CV functionality
-        document.getElementById('downloadCV').addEventListener('click', function(e) {
-            // This will actually download the CV file if it exists
-            // If the file doesn't exist yet, you can uncomment the alert below
-            // e.preventDefault();
-            // alert('CV download functionality would be implemented here in a real website.');
+        // References section functionality
+        document.getElementById('viewReferences').addEventListener('click', function(e) {
+            e.preventDefault();
+            const referencesSection = document.getElementById('references');
+            referencesSection.style.display = 'block';
+            
+            // Scroll to references section
+            window.scrollTo({
+                top: referencesSection.offsetTop - 70,
+                behavior: 'smooth'
+            });
+        });
+        
+        document.getElementById('closeReferences').addEventListener('click', function() {
+            document.getElementById('references').style.display = 'none';
         });
 
         // Function to check if tech-bg.jpg exists, if not, use a fallback color
