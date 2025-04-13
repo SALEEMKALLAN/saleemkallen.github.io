@@ -13,6 +13,8 @@
             --text-color: #333;
             --section-bg: #fff;
             --border-color: #ddd;
+            --demo-btn-color: #28a745;
+            --demo-btn-hover: #218838;
         }
 
         * {
@@ -125,6 +127,18 @@
 
         nav ul li a:hover {
             background-color: rgba(255,255,255,0.1);
+        }
+
+        .view-demos-link {
+            color: white;
+            background-color: var(--demo-btn-color);
+            border-radius: 4px;
+            margin: 8px 10px;
+            padding: 7px 15px !important;
+        }
+
+        .view-demos-link:hover {
+            background-color: var(--demo-btn-hover) !important;
         }
 
         /* Dropdown Menu */
@@ -331,6 +345,20 @@
             background-color: #5a6268;
         }
 
+        .btn-demo {
+            background-color: var(--demo-btn-color);
+        }
+
+        .btn-demo:hover {
+            background-color: var(--demo-btn-hover);
+        }
+
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary-color);
@@ -377,6 +405,57 @@
             transform: rotate(-90deg);
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: var(--section-bg);
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .profile-container {
@@ -400,6 +479,20 @@
 
             .contact-info div {
                 min-width: 100%;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .modal-iframe {
+                height: 300px;
+            }
+            
+            .view-demos-link {
+                margin: 5px 0;
+                border-radius: 0;
             }
         }
 
@@ -548,6 +641,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#projects" class="view-demos-link">View Demos</a></li>
         </ul>
     </nav>
 
@@ -577,6 +671,9 @@
                         <li>Created web scraping and browser automation tools.</li>
                         <li>Developed frontend interfaces using Flask framework.</li>
                     </ul>
+                    <div class="buttons">
+                        <button class="btn btn-demo" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                    </div>
                 </div>
 
                 <div class="timeline-item">
@@ -613,7 +710,6 @@
                         <li>Visited multiple production plants and demonstrated proficiency in reading and interpreting P&ID diagrams.</li>
                         <li>Contributed to sustainability initiatives including analysis of coffee residue pyrolysis and hydrogen energy projects.</li>
                     </ul>
-                </div>                    </ul>
                 </div>
 
                 <div class="timeline-item" id="airport">
@@ -727,21 +823,33 @@
                     <div class="project-card">
                         <h4 class="project-title">AI-Driven Chatbot Development</h4>
                         <p class="project-desc">Developed an advanced chatbot using large language models, RAG, and Elasticsearch for internal knowledge management at Bosch and Siemens.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                        </div>
                     </div>
 
                     <div class="project-card">
                         <h4 class="project-title">Data Visualization Suite</h4>
                         <p class="project-desc">Created comprehensive dashboards for complex business data using Power BI and DAX, enabling data-driven decision making.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo" onclick="openModal('data-viz-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                        </div>
                     </div>
 
                     <div class="project-card">
                         <h4 class="project-title">Hydrogen Emission Reduction</h4>
                         <p class="project-desc">Contributed to Zero CO2 Emission projects through optimization of hydrogen burners and electrolysers at Jacobs Coffee.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo" onclick="openModal('hydrogen-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                        </div>
                     </div>
 
                     <div class="project-card">
                         <h4 class="project-title">3D Design using Lua Programming</h4>
                         <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
+                        <div class="project-buttons">
+                            <button class="btn btn-demo" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -779,6 +887,63 @@
             </div>
         </section>
     </main>
+    
+    <!-- Demo Modals -->
+    <div id="chatbot-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('chatbot-demo-modal')">&times;</span>
+            <div class="modal-header">
+                <h3>AI-Driven Chatbot Demo</h3>
+            </div>
+            <div class="modal-body">
+                <p>This demonstration showcases my AI-driven chatbot developed during my Master's thesis at Bosch and Siemens. The chatbot leverages large language models, retrieval augmented generation (RAG), and Elasticsearch to provide accurate responses to internal knowledge queries.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="chatbot-demo.html"></iframe>
+                <p><em>Note: In a live implementation, this would be connected to the actual chatbot project.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="data-viz-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('data-viz-demo-modal')">&times;</span>
+            <div class="modal-header">
+                <h3>Data Visualization Demo</h3>
+            </div>
+            <div class="modal-body">
+                <p>This demo shows my data visualization work created with Power BI, M programming, and DAX Studio. It demonstrates how complex business data can be transformed into intuitive dashboards for data-driven decision making.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="data-viz-demo.html"></iframe>
+                <p><em>Note: In a live implementation, this would be connected to actual Power BI dashboards.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="hydrogen-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('hydrogen-demo-modal')">&times;</span>
+            <div class="modal-header">
+                <h3>Hydrogen Emission Reduction Project</h3>
+            </div>
+            <div class="modal-body">
+                <p>This demonstration showcases my work on Zero CO2 Emission projects at Jacobs Coffee, featuring the optimization of hydrogen burners and electrolysers to reduce environmental impact.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="hydrogen-demo.html"></iframe>
+                <p><em>Note: In a live implementation, this would be connected to actual project data.</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="3d-design-demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('3d-design-demo-modal')">&times;</span>
+            <div class="modal-header">
+                <h3>3D Design Portfolio</h3>
+            </div>
+            <div class="modal-body">
+                <p>This demonstration showcases my 3D modeling work using Lua programming and IceSL, featuring the centrifugal single vane diagonal pump and various gear systems I've designed.</p>
+                <iframe class="modal-iframe" src="about:blank" data-src="3d-design-demo.html"></iframe>
+                <p><em>Note: In a live implementation, this would display actual 3D models.</em></p>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -851,6 +1016,54 @@
                 header.style.backgroundColor = 'var(--primary-color)';
                 header.style.animation = 'none';
             };
+        });
+        
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            // Set the iframe src only when opening to improve performance
+            const iframe = modal.querySelector('.modal-iframe');
+            if (iframe && iframe.getAttribute('src') === 'about:blank') {
+                const dataSrc = iframe.getAttribute('data-src');
+                if (dataSrc) {
+                    iframe.setAttribute('src', dataSrc);
+                }
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+        
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+        
+        // Close modal when clicking outside of modal content
+        window.onclick = function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+        }
+        
+        // Close modal when pressing escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = ''; // Restore scrolling
+                    }
+                });
+            }
         });
     </script>
 </body>
