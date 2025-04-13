@@ -282,6 +282,68 @@
             font-size: 0.9rem;
         }
 
+        /* Language Skills Section */
+        .language-skills {
+            margin-top: 30px;
+        }
+
+        .language-item {
+            margin-bottom: 15px;
+        }
+
+        .language-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .language-description {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .language-level {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .language-progress {
+            height: 100%;
+            border-radius: 5px;
+            background-color: var(--primary-color);
+        }
+
+        .level-C1 { width: 90%; background-color: #2a6496; }
+        .level-B2 { width: 75%; background-color: #4a8bc2; }
+        .level-B1 { width: 60%; background-color: #7bb5e8; }
+        .level-A2 { width: 45%; background-color: #a7cef0; }
+        .level-Native { width: 100%; background-color: #1a4971; }
+
+        .level-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .level-label {
+            padding: 2px 6px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
         /* Projects Section */
         .projects-grid {
             display: grid;
@@ -635,6 +697,7 @@
             </li>
             <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#languages">Languages</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#projects" class="view-demos-link">View Project Demos</a></li>
@@ -811,237 +874,88 @@
                 </div>
             </div>
         </section>
-
-        <section id="projects">
-            <h3 class="collapsible-header">Projects and Achievements <i class="fas fa-chevron-down"></i></h3>
+        
+        <section id="languages">
+            <h3 class="collapsible-header">Language Skills <i class="fas fa-chevron-down"></i></h3>
             <div class="collapsible-content">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h4 class="project-title">AI-Driven Chatbot Development</h4>
-                        <p class="project-desc">Developed an advanced chatbot using large language models, RAG, and Elasticsearch for internal knowledge management at Bosch and Siemens.</p>
-                        <div class="project-buttons">
-                            <button class="btn btn-demo" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                <div class="language-skills">
+                    <div class="level-indicator">
+                        <span>Beginner</span>
+                        <span>Elementary</span>
+                        <span>Intermediate</span>
+                        <span>Advanced</span>
+                        <span>Native</span>
+                    </div>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            Malayalam <span class="level-label">Native</span>
+                        </div>
+                        <div class="language-description">Native language of Kerala, India</div>
+                        <div class="language-level">
+                            <div class="language-progress level-Native"></div>
                         </div>
                     </div>
-
-                    <div class="project-card">
-                        <h4 class="project-title">Data Visualization Suite</h4>
-                        <p class="project-desc">Created comprehensive dashboards for complex business data using Power BI and DAX, enabling data-driven decision making.</p>
-                        <div class="project-buttons">
-                            <button class="btn btn-demo" onclick="openModal('data-viz-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            English <span class="level-label">C1</span>
+                        </div>
+                        <div class="language-description">Advanced proficiency</div>
+                        <div class="language-level">
+                            <div class="language-progress level-C1"></div>
                         </div>
                     </div>
-
-
-                    <div class="project-card">
-                        <h4 class="project-title">3D Design using Lua Programming</h4>
-                        <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
-                        <div class="project-buttons">
-                            <button class="btn btn-demo" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            Hindi <span class="level-label">B2</span>
+                        </div>
+                        <div class="language-description">Upper intermediate proficiency</div>
+                        <div class="language-level">
+                            <div class="language-progress level-B2"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            German <span class="level-label">B1</span>
+                        </div>
+                        <div class="language-description">Intermediate proficiency</div>
+                        <div class="language-level">
+                            <div class="language-progress level-B1"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            Urdu <span class="level-label">B1</span>
+                        </div>
+                        <div class="language-description">Intermediate proficiency</div>
+                        <div class="language-level">
+                            <div class="language-progress level-B1"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            Tamil <span class="level-label">A2</span>
+                        </div>
+                        <div class="language-description">Elementary proficiency</div>
+                        <div class="language-level">
+                            <div class="language-progress level-A2"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            Arabic <span class="level-label">A2</span>
+                        </div>
+                        <div class="language-description">Elementary proficiency</div>
+                        <div class="language-level">
+                            <div class="language-progress level-A2"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section id="contact">
-            <h3>Contact Information</h3>
-            <div class="contact-info">
-                <div>
-                    <i class="fas fa-phone"></i>
-                    <span>+49 15141334357</span>
-                </div>
-                <div>
-                    <i class="fas fa-envelope"></i>
-                    <span>kallensaleem@gmail.com</span>
-                </div>
-                <div>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Klinikum Großharden, München.</span>
-                </div>
-                <div>
-                    <i class="fas fa-calendar"></i>
-                    <span>DoB: 07/07/1998</span>
-                </div>
-                <div>
-                    <i class="fas fa-language"></i>
-                    <span>German (B1), English (C1)</span>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <a href="mailto:kallensaleem@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email </a>
-                <a href="https://www.linkedin.com/in/muhammed-saleem-kallan-499227127/" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/saleemkallen" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </section>
-    </main>
-    
-    <!-- Demo Modals -->
-    <div id="chatbot-demo-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('chatbot-demo-modal')">&times;</span>
-            <div class="modal-header">
-                <h3>AI-Driven Chatbot Demo</h3>
-            </div>
-            <div class="modal-body">
-                <p>This demonstration showcases my AI-driven chatbot developed during my Master's thesis at Bosch and Siemens. The chatbot leverages large language models, retrieval augmented generation (RAG), and Elasticsearch to provide accurate responses to internal knowledge queries.</p>
-                <iframe class="modal-iframe" src="about:blank" data-src="0408(3).mp4"></iframe>
-                <p><em>Note: In a live implementation, this would be connected to the actual chatbot project.</em></p>
-            </div>
-        </div>
-    </div>
-    
-    <div id="data-viz-demo-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('data-viz-demo-modal')">&times;</span>
-            <div class="modal-header">
-                <h3>Data Visualization Demo</h3>
-            </div>
-            <div class="modal-body">
-                <p>This demo shows the demo of the interactive cover page for a PBI report. Further informations cant be shown due to data security regulations </p>
-                <iframe class="modal-iframe" src="about:blank" data-src="PBI_Dashbord_UI.png"></iframe>
-                <p><em>Note: In a live implementation, this would be connected to actual Power BI dashboards.</em></p>
-            </div>
-        </div>
-    </div>
-    
-    
-    
-    <div id="3d-design-demo-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('3d-design-demo-modal')">&times;</span>
-            <div class="modal-header">
-                <h3>3D Design Portfolio</h3>
-            </div>
-            <div class="modal-body">
-                <p>This demonstration showcases my 3D modeling work using Lua programming and IceSL, featuring the centrifugal single vane diagonal pump and various gear systems I've designed.</p>
-                <iframe class="modal-iframe" src="about:blank" data-src="pump demo.mp4"></iframe>
-                <p><em>Note: In a live implementation, this would display actual 3D models.</em></p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Muhammed Saleem Kallan. All rights reserved.</p>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/muhammed-saleem-kallan-499227127/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/saleemkallen" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/yourtwitterhandle" target="_blank"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Collapsible sections
-        document.querySelectorAll('.collapsible-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const section = header.parentElement;
-                section.classList.toggle('collapsed');
-            });
-        });
-
-        // Dark mode toggle
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('change', () => {
-            document.body.classList.toggle('dark-mode', themeToggle.checked);
-            // Save preference to local storage
-            localStorage.setItem('darkMode', themeToggle.checked);
-        });
-
-        // Check for saved preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            themeToggle.checked = true;
-            document.body.classList.add('dark-mode');
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (this.getAttribute('href') === '#') return;
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Download CV functionality
-        document.getElementById('downloadCV').addEventListener('click', function(e) {
-            // This will actually download the CV file if it exists
-            // If the file doesn't exist yet, you can uncomment the alert below
-            // e.preventDefault();
-            // alert('CV download functionality would be implemented here in a real website.');
-        });
-
-        // Function to check if tech-bg.jpg exists, if not, use a fallback color
-        window.addEventListener('load', function() {
-            const header = document.querySelector('header');
-            const img = new Image();
-            img.src = 'tech-bg.jpg';
-            img.onerror = function() {
-                header.style.backgroundImage = 'none';
-                header.style.backgroundColor = 'var(--primary-color)';
-                header.style.animation = 'none';
-            };
-        });
-        
-        // Modal functions
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
-            
-            // Set the iframe src only when opening to improve performance
-            const iframe = modal.querySelector('.modal-iframe');
-            if (iframe && iframe.getAttribute('src') === 'about:blank') {
-                const dataSrc = iframe.getAttribute('data-src');
-                if (dataSrc) {
-                    iframe.setAttribute('src', dataSrc);
-                }
-            }
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-        }
-        
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
-            
-            modal.style.display = 'none';
-            document.body.style.overflow = ''; // Restore scrolling
-        }
-        
-        // Close modal when clicking outside of modal content
-        window.onclick = function(event) {
-            document.querySelectorAll('.modal').forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = ''; // Restore scrolling
-                }
-            });
-        }
-        
-        // Close modal when pressing escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    if (modal.style.display === 'block') {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = ''; // Restore scrolling
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
