@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammed Saleem Kallan - Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2a6496;
+            --secondary-color: #4a8bc2;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --section-bg: #fff;
+            --border-color: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            margin: 0 auto 20px;
+        }
+
+        .profile-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--secondary-color);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 101;
+        }
+
+        .dropdown-content a {
+            padding: 12px 20px;
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        section {
+            background-color: var(--section-bg);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        section h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            min-width: 200px;
+            flex: 1;
+        }
+
+        .contact-info i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: var(--primary-color);
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Experience and Education */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .timeline-position {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-company {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .timeline-duties {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .timeline-duties li {
+            margin-bottom: 5px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .skill-category h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .project-desc {
+            margin-bottom: 15px;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Collapsible Sections */
+        .collapsible-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: none;
+        }
+
+        .collapsible-header i {
+            transition: transform 0.3s;
+        }
+
+        .collapsible-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .collapsed .collapsible-content {
+            max-height: 0;
+        }
+
+        .collapsed .collapsible-header i {
+            transform: rotate(-90deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown-content {
+                position: static;
+                width: 100%;
+            }
+
+            .contact-info div {
+                min-width: 100%;
+            }
+        }
+
+        /* Dark Mode Toggle */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-switch label {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .dark-mode {
+            --primary-color: #1a4971;
+            --secondary-color: #2c5d8a;
+            --background-color: #121212;
+            --text-color: #f5f5f5;
+            --section-bg: #1e1e1e;
+            --border-color: #444;
+        }
+
+        .dark-mode .skill-list li {
+            background-color: #333;
+        }
+
+        .dark-mode .project-card {
+            background-color: #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container profile-container">
+            <img src="/api/placeholder/400/400" alt="Muhammed Saleem Kallan" class="profile-image">
+            <div class="profile-text">
+                <h1>Muhammed Saleem Kallan</h1>
+                <h2>M.Eng - Mechatronic and Cyber Physical Systems</h2>
+                <div class="buttons">
+                    <a href="#contact" class="btn">Contact Me</a>
+                    <a href="#" class="btn btn-secondary" id="downloadCV">Download CV</a>
+                </div>
+            </div>
+        </div>
+        <div class="theme-switch">
+            <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider"></span>
+            </label>
+            <label for="themeToggle"><i class="fas fa-moon"></i></label>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li class="dropdown">
+                <a href="#experience">Experience <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#bosch">Bosch and Siemens</a>
+                    <a href="#jacobs">Jacobs Coffee</a>
+                    <a href="#airport">Calicut Airport</a>
+                </div>
+            </li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section id="about">
+            <h3 class="collapsible-header">About Me <i class="fas fa-chevron-down"></i></h3>
+            <div class="collapsible-content">
+                <p>I am a Mechatronic and Cyber Physical Systems Engineer with expertise in AI-driven solutions, data analysis, and programming. My experience spans from developing AI chatbots to optimizing automation procedures and analyzing complex datasets. I am passionate about creating intelligent systems that bridge the physical and digital worlds.</p>
+                <p>With a strong background in mechanical engineering and advanced skills in programming languages like Python, C++, and SQL, I bring a unique blend of hardware and software expertise to solve complex engineering challenges.</p>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h3 class="collapsible-header">Work Experience <i class="fas fa-chevron-down"></i></h3>
+            <div class="collapsible-content">
+                <div class="timeline-item" id="bosch">
+                    <div class="timeline-date">08/2024 - 01/2025</div>
+                    <div class="timeline-position">Master Thesis: PoC for Chatbot Development</div>
+                    <div class="timeline-company">Bosch and Siemens Hausgeräte, Munich</div>
+                    <p>Developed an AI-driven solution using cutting-edge technologies to improve internal knowledge access.</p>
+                    <ul class="timeline-duties">
+                        <li>Developed an AI-driven chatbot leveraging large language models and natural language processing for internal data using RAG from Elasticsearch and MySQL database.</li>
+                        <li>Implemented semantic and vector search using Elasticsearch.</li>
+                        <li>Developed various chatbot models utilizing Azure and Power Virtual Agents.</li>
+                        <li>Implemented solutions for large and complex data handling.</li>
+                        <li>Created web scraping and browser automation tools.</li>
+                        <li>Developed frontend interfaces using Flask framework.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2023 - 07/2024</div>
+                    <div class="timeline-position">Working Student at GDE Business Excellence Dept.</div>
+                    <div class="timeline-company">Bosch and Siemens Hausgeräte, Munich</div>
+                    <ul class="timeline-duties">
+                        <li>Demonstrated ability to analyze complex datasets and translate them into easily understandable visualizations using Power BI, M programming, and Dax studio.</li>
+                        <li>Process redesigning using HTML and CSS.</li>
+                        <li>Software compatibility testing.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item" id="jacobs">
+                    <div class="timeline-date">11/2022 - 04/2023</div>
+                    <div class="timeline-position">Project Management Intern</div>
+                    <div class="timeline-company">Jacobs Coffee (JDE Peets), Bremen</div>
+                    <ul class="timeline-duties">
+                        <li>Supported project managers in project execution and coordination.</li>
+                        <li>Worked on hydrogen projects for Zero CO2 Emission – optimization, flame and flow analysis, and design of hydrogen burners, electrolysers & roasters.</li>
+                        <li>Researched coffee residue pyrolysis.</li>
+                        <li>Optimized automation procedures.</li>
+                        <li>Created engineering process and equipment standards for heat exchanger optimization.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item" id="airport">
+                    <div class="timeline-date">10/2020 - 01/2021</div>
+                    <div class="timeline-position">Internship at Mechanical Engineering Dept.</div>
+                    <div class="timeline-company">Calicut International Airport</div>
+                    <ul class="timeline-duties">
+                        <li>Maintained and monitored fire engines and other mechanical equipment.</li>
+                        <li>Provided technical support and prepared reports.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h3 class="collapsible-header">Education <i class="fas fa-chevron-down"></i></h3>
+            <div class="collapsible-content">
+                <div class="timeline-item">
+                    <div class="timeline-date">10/2021 - Present</div>
+                    <div class="timeline-position">M.Eng. Mechatronic and CyberPhysical Systems</div>
+                    <div class="timeline-company">Deggendorf Institute of Technology, Bavaria, Germany</div>
+                    <p>Focused on advanced robotics, machine learning, autonomous systems, additive manufacturing, 3D printing, cyberphysical systems, and functional safety.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">08/2016 - 09/2020</div>
+                    <div class="timeline-position">Bachelor of Technology in Mechanical Engineering</div>
+                    <div class="timeline-company">Government Engineering College, Kozhikode, India</div>
+                    <p>Bachelor thesis: SI Engine emission and characteristics for Ethanol-Butanol & gasoline blends.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h3 class="collapsible-header">Skills <i class="fas fa-chevron-down"></i></h3>
+            <div class="collapsible-content">
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h4>Programming Languages</h4>
+                        <ul class="skill-list">
+                            <li>Python</li>
+                            <li>C++</li>
+                            <li>SQL</li>
+                            <li>Matlab</li>
+                            <li>Lua</li>
+                            <li>R Programming</li>
+                            <li>CSS & HTML</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Data & AI Technologies</h4>
+                        <ul class="skill-list">
+                            <li>Natural Language Processing (NLP)</li>
+                            <li>Web Scraping</li>
+                            <li>Elasticsearch</li>
+                            <li>RAG & Langchain</li>
+                            <li>Power BI</li>
+                            <li>PowerQuery</li>
+                            <li>Dax Studio</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Tools & Technologies</h4>
+                        <ul class="skill-list">
+                            <li>Selenium</li>
+                            <li>Power Automate</li>
+                            <li>Azure</li>
+                            <li>Jira & Confluence</li>
+                            <li>MS Office</li>
+                            <li>MS Project</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Engineering & Design</h4>
+                        <ul class="skill-list">
+                            <li>3D Modeling</li>
+                            <li>Blender</li>
+                            <li>Solidworks</li>
+                            <li>AutoCAD</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h3 class="collapsible-header">Projects and Achievements <i class="fas fa-chevron-down"></i></h3>
+            <div class="collapsible-content">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h4 class="project-title">AI-Driven Chatbot Development</h4>
+                        <p class="project-desc">Developed an advanced chatbot using large language models, RAG, and Elasticsearch for internal knowledge management at Bosch and Siemens.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <h4 class="project-title">Data Visualization Suite</h4>
+                        <p class="project-desc">Created comprehensive dashboards for complex business data using Power BI and DAX, enabling data-driven decision making.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <h4 class="project-title">Hydrogen Emission Reduction</h4>
+                        <p class="project-desc">Contributed to Zero CO2 Emission projects through optimization of hydrogen burners and electrolysers at Jacobs Coffee.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <h4 class="project-title">3D Design using Lua Programming</h4>
+                        <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h3>Contact Information</h3>
+            <div class="contact-info">
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <span>+49 15141334357</span>
+                </div>
+                <div>
+                    <i class="fas fa-envelope"></i>
+                    <span>kallensaleem@gmail.com</span>
+                </div>
+                <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Vöttinger straße 49, Freising</span>
+                </div>
+                <div>
+                    <i class="fas fa-calendar"></i>
+                    <span>DoB: 07/07/1998</span>
+                </div>
+                <div>
+                    <i class="fas fa-language"></i>
+                    <span>German (B1), English (C1)</span>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <a href="mailto:kallensaleem@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
+                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/yourgithub" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Muhammed Saleem Kallan. All rights reserved.</p>
+            <div>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Collapsible sections
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.parentElement;
+                section.classList.toggle('collapsed');
+            });
+        });
+
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', themeToggle.checked);
+            // Save preference to local storage
+            localStorage.setItem('darkMode', themeToggle.checked);
+        });
+
+        // Check for saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            themeToggle.checked = true;
+            document.body.classList.add('dark-mode');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Download CV functionality (placeholder)
+        document.getElementById('downloadCV').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('CV download functionality would be implemented here in a real website.');
+        });
+    </script>
+</body>
+</html>
