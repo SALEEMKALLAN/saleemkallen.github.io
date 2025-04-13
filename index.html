@@ -36,10 +36,23 @@
 
         /* Header Styles */
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('tech-bg.jpg');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 30px 0;
             position: relative;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 80, 170, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 0;
         }
 
         .profile-container {
@@ -47,6 +60,13 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-text h1, 
+        .profile-text h2 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .profile-image {
@@ -56,6 +76,7 @@
             border: 5px solid white;
             object-fit: cover;
             margin: 0 auto 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .profile-text {
@@ -193,6 +214,16 @@
         .timeline-company {
             font-style: italic;
             margin-bottom: 10px;
+        }
+
+        .timeline-company a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .timeline-company a:hover {
+            text-decoration: underline;
         }
 
         .timeline-duties {
@@ -379,6 +410,7 @@
             right: 20px;
             display: flex;
             align-items: center;
+            z-index: 1;
         }
 
         .theme-switch label {
@@ -447,6 +479,36 @@
         .dark-mode .project-card {
             background-color: #2a2a2a;
         }
+
+        .dark-mode .timeline-company a {
+            color: #7bb5e8;
+        }
+
+        /* Add animation to header */
+        @keyframes slowZoom {
+            from { background-size: 100% auto; }
+            to { background-size: 110% auto; }
+        }
+
+        header {
+            animation: slowZoom 30s alternate infinite;
+        }
+
+        /* Social media icons styling */
+        .social-icons {
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -458,7 +520,7 @@
                 <h2>M.Eng - Mechatronic and Cyber Physical Systems</h2>
                 <div class="buttons">
                     <a href="#contact" class="btn">Contact Me</a>
-                    <a href="#" class="btn btn-secondary" id="downloadCV">Download CV</a>
+                    <a href="CV-Muhammed-Saleem.pdf" class="btn btn-secondary" id="downloadCV">Download CV</a>
                 </div>
             </div>
         </div>
@@ -504,7 +566,7 @@
                 <div class="timeline-item" id="bosch">
                     <div class="timeline-date">08/2024 - 01/2025</div>
                     <div class="timeline-position">Master Thesis: PoC for Chatbot Development</div>
-                    <div class="timeline-company">Bosch and Siemens Hausgeräte, Munich</div>
+                    <div class="timeline-company"><a href="https://www.bsh-group.com/" target="_blank">Bosch and Siemens Hausgeräte, Munich</a></div>
                     <p>Developed an AI-driven solution using cutting-edge technologies to improve internal knowledge access.</p>
                     <ul class="timeline-duties">
                         <li>Developed an AI-driven chatbot leveraging large language models and natural language processing for internal data using RAG from Elasticsearch and MySQL database.</li>
@@ -519,7 +581,7 @@
                 <div class="timeline-item">
                     <div class="timeline-date">09/2023 - 07/2024</div>
                     <div class="timeline-position">Working Student at GDE Business Excellence Dept.</div>
-                    <div class="timeline-company">Bosch and Siemens Hausgeräte, Munich</div>
+                    <div class="timeline-company"><a href="https://www.bsh-group.com/" target="_blank">Bosch and Siemens Hausgeräte, Munich</a></div>
                     <ul class="timeline-duties">
                         <li>Demonstrated ability to analyze complex datasets and translate them into easily understandable visualizations using Power BI, M programming, and Dax studio.</li>
                         <li>Process redesigning using HTML and CSS.</li>
@@ -530,7 +592,7 @@
                 <div class="timeline-item" id="jacobs">
                     <div class="timeline-date">11/2022 - 04/2023</div>
                     <div class="timeline-position">Project Management Intern</div>
-                    <div class="timeline-company">Jacobs Coffee (JDE Peets), Bremen</div>
+                    <div class="timeline-company"><a href="https://www.jacobsdouweegberts.com/" target="_blank">Jacobs Coffee (JDE Peets), Bremen</a></div>
                     <ul class="timeline-duties">
                         <li>Supported project managers in project execution and coordination.</li>
                         <li>Worked on hydrogen projects for Zero CO2 Emission – optimization, flame and flow analysis, and design of hydrogen burners, electrolysers & roasters.</li>
@@ -543,7 +605,7 @@
                 <div class="timeline-item" id="airport">
                     <div class="timeline-date">10/2020 - 01/2021</div>
                     <div class="timeline-position">Internship at Mechanical Engineering Dept.</div>
-                    <div class="timeline-company">Calicut International Airport</div>
+                    <div class="timeline-company"><a href="https://www.aai.aero/en/airports/calicut" target="_blank">Calicut International Airport</a></div>
                     <ul class="timeline-duties">
                         <li>Maintained and monitored fire engines and other mechanical equipment.</li>
                         <li>Provided technical support and prepared reports.</li>
@@ -558,14 +620,14 @@
                 <div class="timeline-item">
                     <div class="timeline-date">10/2021 - Present</div>
                     <div class="timeline-position">M.Eng. Mechatronic and CyberPhysical Systems</div>
-                    <div class="timeline-company">Deggendorf Institute of Technology, Bavaria, Germany</div>
+                    <div class="timeline-company"><a href="https://www.th-deg.de/en/" target="_blank">Deggendorf Institute of Technology, Bavaria, Germany</a></div>
                     <p>Focused on advanced robotics, machine learning, autonomous systems, additive manufacturing, 3D printing, cyberphysical systems, and functional safety.</p>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-date">08/2016 - 09/2020</div>
                     <div class="timeline-position">Bachelor of Technology in Mechanical Engineering</div>
-                    <div class="timeline-company">Government Engineering College, Kozhikode, India</div>
+                    <div class="timeline-company"><a href="https://gectly.ac.in/" target="_blank">Government Engineering College, Kozhikode, India</a></div>
                     <p>Bachelor thesis: SI Engine emission and characteristics for Ethanol-Butanol & gasoline blends.</p>
                 </div>
             </div>
@@ -666,7 +728,7 @@
                 </div>
                 <div>
                     <i class="fas fa-map-marker-alt"></i>
-                    <span> Klinikum Großharden, München.</span>
+                    <span>Klinikum Großharden, München.</span>
                 </div>
                 <div>
                     <i class="fas fa-calendar"></i>
@@ -680,8 +742,8 @@
 
             <div class="buttons">
                 <a href="mailto:kallensaleem@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
-                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/yourgithub" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/muhammed-saleem-kallan" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/saleeeem" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </section>
     </main>
@@ -689,10 +751,10 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Muhammed Saleem Kallan. All rights reserved.</p>
-            <div>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/muhammed-saleem-kallan" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/saleeeem" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/yourtwitterhandle" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
@@ -739,10 +801,24 @@
             });
         });
 
-        // Download CV functionality (placeholder)
+        // Download CV functionality
         document.getElementById('downloadCV').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('CV download functionality would be implemented here in a real website.');
+            // This will actually download the CV file if it exists
+            // If the file doesn't exist yet, you can uncomment the alert below
+            // e.preventDefault();
+            // alert('CV download functionality would be implemented here in a real website.');
+        });
+
+        // Function to check if tech-bg.jpg exists, if not, use a fallback color
+        window.addEventListener('load', function() {
+            const header = document.querySelector('header');
+            const img = new Image();
+            img.src = 'banner.jfif';
+            img.onerror = function() {
+                header.style.backgroundImage = 'none';
+                header.style.backgroundColor = 'var(--primary-color)';
+                header.style.animation = 'none';
+            };
         });
     </script>
 </body>
