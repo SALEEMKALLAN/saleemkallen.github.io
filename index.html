@@ -146,6 +146,39 @@
             display: block;
         }
 
+        /* Dropdown Button for Documents */
+        .dropdown-btn {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content-btn {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content-btn a {
+            color: var(--text-color);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content-btn a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-btn:hover .dropdown-content-btn {
+            display: block;
+        }
+
         /* Main Content */
         main {
             padding: 40px 0;
@@ -297,6 +330,66 @@
             margin-bottom: 15px;
         }
 
+        /* References Section */
+        .references-container {
+            margin-top: 20px;
+        }
+
+        .reference-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .reference-header {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .reference-header h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .reference-date {
+            font-style: italic;
+            color: #666;
+        }
+
+        .reference-content p {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .reference-content h5 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .reference-content h6 {
+            font-size: 1rem;
+            margin: 15px 0 10px 0;
+            color: #444;
+        }
+
+        .reference-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .reference-content li {
+            margin-bottom: 5px;
+        }
+
+        .reference-buttons {
+            margin-top: 30px;
+        }
+
         /* Buttons */
         .buttons {
             display: flex;
@@ -401,6 +494,12 @@
             .contact-info div {
                 min-width: 100%;
             }
+            
+            .dropdown-content-btn {
+                position: static;
+                width: 100%;
+                margin-top: 10px;
+            }
         }
 
         /* Dark Mode Toggle */
@@ -484,6 +583,22 @@
             color: #7bb5e8;
         }
 
+        .dark-mode .reference-card {
+            background-color: #2a2a2a;
+        }
+
+        .dark-mode .dropdown-content-btn {
+            background-color: #333;
+        }
+
+        .dark-mode .dropdown-content-btn a {
+            color: #f5f5f5;
+        }
+
+        .dark-mode .dropdown-content-btn a:hover {
+            background-color: #444;
+        }
+
         /* Add animation to header */
         @keyframes slowZoom {
             from { background-size: 100% auto; }
@@ -520,7 +635,14 @@
                 <h2>M.Eng - Mechatronic and Cyber Physical Systems</h2>
                 <div class="buttons">
                     <a href="#contact" class="btn">Contact Me</a>
-                    <a href="CV-Muhammed-Saleem.pdf" class="btn btn-secondary" id="downloadCV">Download CV</a>
+                    <div class="dropdown-btn">
+                        <a class="btn btn-secondary">Documents <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content-btn">
+                            <a href="Resume-Muhammed-Saleem.pdf" target="_blank">Download Resume</a>
+                            <a href="#references" id="viewReferences">View References</a>
+                            <a href="Reference-Letters.pdf" target="_blank">Download References</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -613,7 +735,6 @@
                         <li>Visited multiple production plants and demonstrated proficiency in reading and interpreting P&ID diagrams.</li>
                         <li>Contributed to sustainability initiatives including analysis of coffee residue pyrolysis and hydrogen energy projects.</li>
                     </ul>
-                </div>                    </ul>
                 </div>
 
                 <div class="timeline-item" id="airport">
@@ -745,113 +866,3 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section id="contact">
-            <h3>Contact Information</h3>
-            <div class="contact-info">
-                <div>
-                    <i class="fas fa-phone"></i>
-                    <span>+49 15141334357</span>
-                </div>
-                <div>
-                    <i class="fas fa-envelope"></i>
-                    <span>kallensaleem@gmail.com</span>
-                </div>
-                <div>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Klinikum Großharden, München.</span>
-                </div>
-                <div>
-                    <i class="fas fa-calendar"></i>
-                    <span>DoB: 07/07/1998</span>
-                </div>
-                <div>
-                    <i class="fas fa-language"></i>
-                    <span>German (B1), English (C1)</span>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <a href="mailto:kallensaleem@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
-                <a href="https://linkedin.com/in/muhammed-saleem-kallan" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/saleeeem" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Muhammed Saleem Kallan. All rights reserved.</p>
-            <div class="social-icons">
-                <a href="https://linkedin.com/in/muhammed-saleem-kallan" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/saleeeem" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/yourtwitterhandle" target="_blank"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Collapsible sections
-        document.querySelectorAll('.collapsible-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const section = header.parentElement;
-                section.classList.toggle('collapsed');
-            });
-        });
-
-        // Dark mode toggle
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('change', () => {
-            document.body.classList.toggle('dark-mode', themeToggle.checked);
-            // Save preference to local storage
-            localStorage.setItem('darkMode', themeToggle.checked);
-        });
-
-        // Check for saved preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            themeToggle.checked = true;
-            document.body.classList.add('dark-mode');
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (this.getAttribute('href') === '#') return;
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Download CV functionality
-        document.getElementById('downloadCV').addEventListener('click', function(e) {
-            // This will actually download the CV file if it exists
-            // If the file doesn't exist yet, you can uncomment the alert below
-            // e.preventDefault();
-            // alert('CV download functionality would be implemented here in a real website.');
-        });
-
-        // Function to check if tech-bg.jpg exists, if not, use a fallback color
-        window.addEventListener('load', function() {
-            const header = document.querySelector('header');
-            const img = new Image();
-            img.src = 'tech-bg.jpg';
-            img.onerror = function() {
-                header.style.backgroundImage = 'none';
-                header.style.backgroundColor = 'var(--primary-color)';
-                header.style.animation = 'none';
-            };
-        });
-    </script>
-</body>
-</html>
