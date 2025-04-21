@@ -906,15 +906,79 @@
                     </div>
 
 
+
                     <div class="project-card">
-                        <h4 class="project-title">3D Design using Lua Programming</h4>
-                        <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
-                        <div class="project-buttons">
-                            <button class="btn btn-demo" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                      <h4 class="project-title">3D Design using Lua Programming</h4>
+                      <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
+                      <div class="project-buttons">
+                          <button class="btn btn-demo" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                      </div>
+                  </div>
+                  
+                  <!-- Close the current projects-grid div -->
+                  </div>
+                  
+                  <!-- Add the miscellaneous section with heading -->
+                  <h4 style="margin-top: 30px; margin-bottom: 15px; color: var(--primary-color);">Miscellaneous Projects</h4>
+                  <p style="margin-bottom: 20px;">Additional projects and smaller works that demonstrate my diverse skills and interests.</p>
+                  
+                  <!-- Start a new projects grid for miscellaneous projects -->
+                  <div class="project-card">
+                    <h4 class="project-title">GIS Land Use Analysis</h4>
+                    <p class="project-desc">Created a comprehensive land use and land cover classification analysis for Freising, Bavaria using Quantum GIS. Conducted detailed remote sensing analysis in R programming to identify erosion-prone zones and assess forest health conditions through NDVI analysis from 2019-2022.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo" onclick="openModal('pdf-demo1-modal')"><i class="fas fa-file-pdf"></i> View Poster</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h4 class="project-title">Dendroecological Analysis of Tree Species</h4>
+                    <p class="project-desc">Conducted time series analysis in R programming to assess drought resilience in native and non-native tree species. Compared growth patterns of Douglas Fir, Norway Spruce, and Pedunculate Oak in Southern Germany, analyzing their responses to significant drought events in 1976 and 2003.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo" onclick="openModal('pdf-demo2-modal')"><i class="fas fa-file-pdf"></i> View Research</button>
+                    </div>
+                </div>
+                
+                <!-- Modal Elements for PDFs -->
+                <div id="pdf-demo1-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal('pdf-demo1-modal')">&times;</span>
+                        <div class="modal-header">
+                            <h3>Land Use and Land Cover Analysis - GIS Project</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>This poster presents a comprehensive land use and land cover analysis for the Freising region in Bavaria, Germany. The study identifies critical environmental factors including:</p>
+                            <ul style="margin-bottom: 15px;">
+                                <li>Erosion-prone zones requiring sustainable land management</li>
+                                <li>NDVI vegetation health analysis across 2019-2022</li>
+                                <li>Soil composition analysis and classification</li>
+                                <li>Forest condition monitoring showing climate impact on regional forests</li>
+                            </ul>
+                            <iframe class="modal-iframe" src="about:blank" data-src="GIS_Land_use_Land_Cover.pdf"></iframe>
+                            <p><em>The analysis highlights key areas where conservation practices or reforestation would be more beneficial than intensive agriculture based on LS and K factor measurements.</em></p>
                         </div>
                     </div>
                 </div>
-            </div>
+                
+                <div id="pdf-demo2-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal('pdf-demo2-modal')">&times;</span>
+                        <div class="modal-header">
+                            <h3>Drought Resilience in Native and Non-Native Tree Species</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>This research examines the drought resilience of three tree species in Southern Germany using dendroecological methods:</p>
+                            <ul style="margin-bottom: 15px;">
+                                <li>Compared growth responses of Douglas Fir, Norway Spruce, and Pedunculate Oak to the 1976 and 2003 droughts</li>
+                                <li>Analyzed long-term climatic influences on tree growth using response function analysis</li>
+                                <li>Evaluated climate adaptation potential of non-native species (Douglas Fir) vs. native species</li>
+                                <li>Applied statistical validation using R-squared values and Wilcoxon rank-sum tests</li>
+                            </ul>
+                            <iframe class="modal-iframe" src="about:blank" data-src="Time_series_analysis.pdf"></iframe>
+                            <p><em>The findings suggest Pedunculate Oak shows the highest drought resilience, while Douglas Fir demonstrates improving adaptation over time, making it a potential alternative for climate-resilient forestry.</em></p>
+                        </div>
+                    </div>
+                </div>
         </section>
                 <section id="languages">
             <h3 class="collapsible-header">Language Skills <i class="fas fa-chevron-down"></i></h3>
@@ -1075,6 +1139,33 @@
             </div>
         </div>
     </div>
+    <div id="pdf-demo1-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('pdf-demo1-modal')">&times;</span>
+          <div class="modal-header">
+              <h3>Project Demo 1</h3>
+          </div>
+          <div class="modal-body">
+              <p>This demonstration showcases [brief description of project 1].</p>
+              <iframe class="modal-iframe" src="about:blank" data-src="project1.pdf"></iframe>
+              <p><em>Note: Replace "project1.pdf" with your actual PDF filename.</em></p>
+          </div>
+      </div>
+  </div>
+  
+  <div id="pdf-demo2-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('pdf-demo2-modal')">&times;</span>
+          <div class="modal-header">
+              <h3>Project Demo 2</h3>
+          </div>
+          <div class="modal-body">
+              <p>This demonstration showcases [brief description of project 2].</p>
+              <iframe class="modal-iframe" src="about:blank" data-src="project2.pdf"></iframe>
+              <p><em>Note: Replace "project2.pdf" with your actual PDF filename.</em></p>
+          </div>
+      </div>
+  </div>
 
     <footer>
         <div class="container">
