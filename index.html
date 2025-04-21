@@ -38,23 +38,41 @@
 
         /* Header Styles */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('tech-bg.jpg');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(19, 57, 96, 0.85), rgba(7, 28, 51, 0.9));
             color: white;
             padding: 30px 0;
             position: relative;
+            overflow: hidden;
         }
 
-        header::before {
-            content: "";
+        /* Galaxy Background */
+        .galaxy-background {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 80, 170, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 6s infinite;
+        }
+        
+        @keyframes twinkle {
+            0% {opacity: 0;}
+            50% {opacity: 0.8;}
+            100% {opacity: 0;}
+        }
+        
+        .moving-star {
+            opacity: 0.8;
+            animation: none;
         }
 
         .profile-container {
@@ -426,6 +444,8 @@
             text-align: center;
             padding: 20px 0;
             margin-top: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
         footer a {
@@ -637,16 +657,6 @@
             color: #7bb5e8;
         }
 
-        /* Add animation to header */
-        @keyframes slowZoom {
-            from { background-size: 100% auto; }
-            to { background-size: 110% auto; }
-        }
-
-        header {
-            animation: slowZoom 30s alternate infinite;
-        }
-
         /* Social media icons styling */
         .social-icons {
             margin-top: 15px;
@@ -676,10 +686,91 @@
         .btn:hover {
             background-color: #0056b3;
         }
+
+        /* Galaxy background controls */
+        .galaxy-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+            max-width: 300px;
+            transition: opacity 0.3s;
+            opacity: 0.3;
+        }
+        
+        .galaxy-controls:hover {
+            opacity: 1;
+        }
+
+        .galaxy-control-title {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .galaxy-control-title button {
+            background: none;
+            border: none;
+            color: #555;
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 5px;
+        }
+
+        .controls-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .controls-expanded .controls-content {
+            max-height: 250px;
+        }
+
+        .slider-container {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .slider-container label {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .slider-container input {
+            flex: 2;
+        }
+
+        .value-display {
+            width: 30px;
+            text-align: right;
+            margin-left: 5px;
+        }
+
+        .galaxy-controls button.control-btn {
+            padding: 4px 8px;
+            margin-right: 5px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
     <header>
+        <div class="galaxy-background" id="galaxyBackground"></div>
         <div class="container profile-container">
             <img src="Photo.jpg" alt="Muhammed Saleem Kallan" class="profile-image">
             <div class="profile-text">
@@ -816,340 +907,309 @@
         <section id="skills">
             <h3 class="collapsible-header">Skills <i class="fas fa-chevron-down"></i></h3>
             <div class="collapsible-content">
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <h4>Programming Languages</h4>
-                        <ul class="skill-list">
-                            <li>Python</li>
-                            <li>C++</li>
-                            <li>SQL</li>
-                            <li>Matlab</li>
-                            <li>Lua</li>
-                            <li>R Programming</li>
-                            <li>CSS & HTML</li>
-                        </ul>
-                    </div>
+              <div class="skills-container">
+                  <div class="skill-category">
+                      <h4>Programming Languages</h4>
+                      <ul class="skill-list">
+                          <li>Python</li>
+                          <li>C++</li>
+                          <li>SQL</li>
+                          <li>Matlab</li>
+                          <li>Lua</li>
+                          <li>R Programming</li>
+                          <li>CSS & HTML</li>
+                      </ul>
+                  </div>
 
-                    <div class="skill-category">
-                        <h4>Data & AI Technologies</h4>
-                        <ul class="skill-list">
-                            <li>Natural Language Processing (NLP)</li>
-                            <li>Web Scraping</li>
-                            <li>Elasticsearch</li>
-                            <li>RAG & Langchain</li>
-                            <li>Power BI</li>
-                            <li>PowerQuery</li>
-                            <li>DAX Studio</li>
-                        </ul>
-                    </div>
+                  <div class="skill-category">
+                      <h4>Data & AI Technologies</h4>
+                      <ul class="skill-list">
+                          <li>Natural Language Processing (NLP)</li>
+                          <li>Web Scraping</li>
+                          <li>Elasticsearch</li>
+                          <li>RAG & Langchain</li>
+                          <li>Power BI</li>
+                          <li>PowerQuery</li>
+                          <li>DAX Studio</li>
+                      </ul>
+                  </div>
 
-                    <div class="skill-category">
-                        <h4>Tools & Technologies</h4>
-                        <ul class="skill-list">
-                            <li>Jira & Confluence</li>
-                            <li>Power Automate</li>
-                            <li>MS Visio & Miro</li>
-                            <li>JFrog & Jenkins</li>
-                            <li>SharePoint</li>
-                            <li>Selenium</li>
-                            <li>Azure</li>
-                            <li>MS Office</li>
-                            <li>MS Project</li>
-                        </ul>
-                    </div>
+                  <div class="skill-category">
+                      <h4>Tools & Technologies</h4>
+                      <ul class="skill-list">
+                          <li>Jira & Confluence</li>
+                          <li>Power Automate</li>
+                          <li>MS Visio & Miro</li>
+                          <li>JFrog & Jenkins</li>
+                          <li>SharePoint</li>
+                          <li>Selenium</li>
+                          <li>Azure</li>
+                          <li>MS Office</li>
+                          <li>MS Project</li>
+                      </ul>
+                  </div>
 
-                    <div class="skill-category">
-                        <h4>Engineering & Design</h4>
-                        <ul class="skill-list">
-                            <li>P&ID Diagram Reading</li>
-                            <li>3D Modeling</li>
-                            <li>Blender</li>
-                            <li>Solidworks</li>
-                            <li>AutoCAD</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h4>Professional Capabilities</h4>
-                        <ul class="skill-list">
-                            <li>Project Management</li>
-                            <li>Supplier Analysis</li>
-                            <li>Total Cost Analysis (TCO)</li>
-                            <li>Process Standardization</li>
-                            <li>Quality Assurance</li>
-                            <li>Technical Documentation</li>
-                            <li>Team Collaboration</li>
-                            <li>Time Management</li>
-                        </ul>
+                  <div class="skill-category">
+                      <h4>Engineering & Design</h4>
+                      <ul class="skill-list">
+                          <li>P&ID Diagram Reading</li>
+                          <li>3D Modeling</li>
+                          <li>Blender</li>
+                          <li>Solidworks</li>
+                          <li>AutoCAD</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="skill-category">
+                      <h4>Professional Capabilities</h4>
+                      <ul class="skill-list">
+                          <li>Project Management</li>
+                          <li>Supplier Analysis</li>
+                          <li>Total Cost Analysis (TCO)</li>
+                          <li>Process Standardization</li>
+                          <li>Quality Assurance</li>
+                          <li>Technical Documentation</li>
+                          <li>Team Collaboration</li>
+                          <li>Time Management</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section id="projects">
+          <h3 class="collapsible-header">Projects and Achievements <i class="fas fa-chevron-down"></i></h3>
+          <div class="collapsible-content">
+              <div class="projects-grid">
+                  <div class="project-card">
+                      <h4 class="project-title">AI-Driven Chatbot Development</h4>
+                      <p class="project-desc">Developed an advanced chatbot using large language models, RAG, and Elasticsearch for internal knowledge management at Bosch and Siemens.</p>
+                      <div class="project-buttons">
+                          <button class="btn btn-demo" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                      </div>
+                  </div>
+
+                  <div class="project-card">
+                      <h4 class="project-title">Data Visualization Suite</h4>
+                      <p class="project-desc">Created comprehensive dashboards for complex business data using Power BI and DAX, enabling data-driven decision making.</p>
+                      <div class="project-buttons">
+                          <button class="btn btn-demo" onclick="openModal('data-viz-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                      </div>
+                  </div>
+
+
+
+                  <div class="project-card">
+                    <h4 class="project-title">3D Design using Lua Programming</h4>
+                    <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
+                    <div class="project-buttons">
+                        <button class="btn btn-demo" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h3 class="collapsible-header">Projects and Achievements <i class="fas fa-chevron-down"></i></h3>
-            <div class="collapsible-content">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h4 class="project-title">AI-Driven Chatbot Development</h4>
-                        <p class="project-desc">Developed an advanced chatbot using large language models, RAG, and Elasticsearch for internal knowledge management at Bosch and Siemens.</p>
-                        <div class="project-buttons">
-                            <button class="btn btn-demo" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <h4 class="project-title">Data Visualization Suite</h4>
-                        <p class="project-desc">Created comprehensive dashboards for complex business data using Power BI and DAX, enabling data-driven decision making.</p>
-                        <div class="project-buttons">
-                            <button class="btn btn-demo" onclick="openModal('data-viz-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
-                        </div>
-                    </div>
-
-
-
-                    <div class="project-card">
-                      <h4 class="project-title">3D Design using Lua Programming</h4>
-                      <p class="project-desc">Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL.</p>
-                      <div class="project-buttons">
-                          <button class="btn btn-demo" onclick="openModal('3d-design-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                
+                <!-- Close the current projects-grid div -->
+                </div>
+                
+                <!-- Add the miscellaneous section with heading -->
+<h4 style="margin-top: 30px; margin-bottom: 15px; color: var(--primary-color);">Other Learning Projects</h4>
+<p style="margin-bottom: 20px;">A few additional projects I've worked on as part of my ongoing learning journey. While still developing my skills in these areas, I'm sharing them to document my growth and exploration in different technical domains.</p>
+                
+                <!-- Start a new projects grid for miscellaneous projects -->
+                <div class="project-card">
+                  <h4 class="project-title">GIS Land Use Analysis</h4>
+                  <p class="project-desc">Created a comprehensive land use and land cover classification analysis for Freising, Bavaria using Quantum GIS. Conducted detailed remote sensing analysis in R programming to identify erosion-prone zones and assess forest health conditions through NDVI analysis from 2019-2022.</p>
+                  <div class="project-buttons">
+                      <button class="btn btn-demo" onclick="openModal('pdf-demo1-modal')"><i class="fas fa-file-pdf"></i> View Poster</button>
+                  </div>
+              </div>
+              
+              <div class="project-card">
+                  <h4 class="project-title">Dendroecological Analysis of Tree Species</h4>
+                  <p class="project-desc">Conducted time series analysis in R programming to assess drought resilience in native and non-native tree species. Compared growth patterns of Douglas Fir, Norway Spruce, and Pedunculate Oak in Southern Germany, analyzing their responses to significant drought events in 1976 and 2003.</p>
+                  <div class="project-buttons">
+                      <button class="btn btn-demo" onclick="openModal('pdf-demo2-modal')"><i class="fas fa-file-pdf"></i> View Research</button>
+                  </div>
+              </div>
+          </div>
+      </section>
+              
+      <section id="languages">
+          <h3 class="collapsible-header">Language Skills <i class="fas fa-chevron-down"></i></h3>
+          <div class="collapsible-content">
+              <div class="language-skills">
+                  <div class="level-indicator">
+                      <span>Beginner</span>
+                      <span>Elementary</span>
+                      <span>Intermediate</span>
+                      <span>Advanced</span>
+                      <span>Native</span>
+                  </div>
+                  
+                  <div class="language-item">
+                      <div class="language-name">
+                          Malayalam <span class="level-label">Native</span>
+                      </div>
+                      <div class="language-description">Native language of Kerala, India</div>
+                      <div class="language-level">
+                          <div class="language-progress level-Native"></div>
                       </div>
                   </div>
                   
-                  <!-- Close the current projects-grid div -->
+                  <div class="language-item">
+                      <div class="language-name">
+                          English <span class="level-label">C1</span>
+                      </div>
+                      <div class="language-description">Advanced proficiency</div>
+                      <div class="language-level">
+                          <div class="language-progress level-C1"></div>
+                      </div>
                   </div>
                   
-                  <!-- Add the miscellaneous section with heading -->
-<h4 style="margin-top: 30px; margin-bottom: 15px; color: var(--primary-color);">Other Learning Projects</h4>
-<p style="margin-bottom: 20px;">A few additional projects I've worked on as part of my ongoing learning journey. While still developing my skills in these areas, I'm sharing them to document my growth and exploration in different technical domains.</p>
+                  <div class="language-item">
+                      <div class="language-name">
+                          Hindi <span class="level-label">B2</span>
+                      </div>
+                      <div class="language-description">Upper intermediate proficiency</div>
+                      <div class="language-level">
+                          <div class="language-progress level-B2"></div>
+                      </div>
+                  </div>
                   
-                  <!-- Start a new projects grid for miscellaneous projects -->
-                  <div class="project-card">
-                    <h4 class="project-title">GIS Land Use Analysis</h4>
-                    <p class="project-desc">Created a comprehensive land use and land cover classification analysis for Freising, Bavaria using Quantum GIS. Conducted detailed remote sensing analysis in R programming to identify erosion-prone zones and assess forest health conditions through NDVI analysis from 2019-2022.</p>
-                    <div class="project-buttons">
-                        <button class="btn btn-demo" onclick="openModal('pdf-demo1-modal')"><i class="fas fa-file-pdf"></i> View Poster</button>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <h4 class="project-title">Dendroecological Analysis of Tree Species</h4>
-                    <p class="project-desc">Conducted time series analysis in R programming to assess drought resilience in native and non-native tree species. Compared growth patterns of Douglas Fir, Norway Spruce, and Pedunculate Oak in Southern Germany, analyzing their responses to significant drought events in 1976 and 2003.</p>
-                    <div class="project-buttons">
-                        <button class="btn btn-demo" onclick="openModal('pdf-demo2-modal')"><i class="fas fa-file-pdf"></i> View Research</button>
-                    </div>
-                </div>
-                
-                <!-- Modal Elements for PDFs -->
-                <div id="pdf-demo1-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-modal" onclick="closeModal('pdf-demo1-modal')">&times;</span>
-                        <div class="modal-header">
-                            <h3>Land Use and Land Cover Analysis - GIS Project</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>This poster presents a comprehensive land use and land cover analysis for the Freising region in Bavaria, Germany. The study identifies critical environmental factors including:</p>
-                            <ul style="margin-bottom: 15px;">
-                                <li>Erosion-prone zones requiring sustainable land management</li>
-                                <li>NDVI vegetation health analysis across 2019-2022</li>
-                                <li>Soil composition analysis and classification</li>
-                                <li>Forest condition monitoring showing climate impact on regional forests</li>
-                            </ul>
-                            <iframe class="modal-iframe" src="about:blank" data-src="GIS_Land_use_Land_Cover.pdf"></iframe>
-                            <p><em>The analysis highlights key areas where conservation practices or reforestation would be more beneficial than intensive agriculture based on LS and K factor measurements.</em></p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="pdf-demo2-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-modal" onclick="closeModal('pdf-demo2-modal')">&times;</span>
-                        <div class="modal-header">
-                            <h3>Drought Resilience in Native and Non-Native Tree Species</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>This research examines the drought resilience of three tree species in Southern Germany using dendroecological methods:</p>
-                            <ul style="margin-bottom: 15px;">
-                                <li>Compared growth responses of Douglas Fir, Norway Spruce, and Pedunculate Oak to the 1976 and 2003 droughts</li>
-                                <li>Analyzed long-term climatic influences on tree growth using response function analysis</li>
-                                <li>Evaluated climate adaptation potential of non-native species (Douglas Fir) vs. native species</li>
-                                <li>Applied statistical validation using R-squared values and Wilcoxon rank-sum tests</li>
-                            </ul>
-                            <iframe class="modal-iframe" src="about:blank" data-src="Time_series_analysis.pdf"></iframe>
-                            <p><em>The findings suggest Pedunculate Oak shows the highest drought resilience, while Douglas Fir demonstrates improving adaptation over time, making it a potential alternative for climate-resilient forestry.</em></p>
-                        </div>
-                    </div>
-                </div>
-        </section>
-                <section id="languages">
-            <h3 class="collapsible-header">Language Skills <i class="fas fa-chevron-down"></i></h3>
-            <div class="collapsible-content">
-                <div class="language-skills">
-                    <div class="level-indicator">
-                        <span>Beginner</span>
-                        <span>Elementary</span>
-                        <span>Intermediate</span>
-                        <span>Advanced</span>
-                        <span>Native</span>
-                    </div>
-                    
-                    <div class="language-item">
-                        <div class="language-name">
-                            Malayalam <span class="level-label">Native</span>
-                        </div>
-                        <div class="language-description">Native language of Kerala, India</div>
-                        <div class="language-level">
-                            <div class="language-progress level-Native"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="language-item">
-                        <div class="language-name">
-                            English <span class="level-label">C1</span>
-                        </div>
-                        <div class="language-description">Advanced proficiency</div>
-                        <div class="language-level">
-                            <div class="language-progress level-C1"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="language-item">
-                        <div class="language-name">
-                            Hindi <span class="level-label">B2</span>
-                        </div>
-                        <div class="language-description">Upper intermediate proficiency</div>
-                        <div class="language-level">
-                            <div class="language-progress level-B2"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="language-item">
-                        <div class="language-name">
-                            German <span class="level-label">B1</span>
-                        </div>
-                        <div class="language-description">Intermediate proficiency</div>
-                        <div class="language-level">
-                            <div class="language-progress level-B1"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="language-item">
-                        <div class="language-name">
-                            Urdu <span class="level-label">B1</span>
-                        </div>
-                        <div class="language-description">Intermediate proficiency</div>
-                        <div class="language-level">
-                            <div class="language-progress level-B1"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="language-item">
-                        <div class="language-name">
-                            Tamil <span class="level-label">A2</span>
-                        </div>
-                        <div class="language-description">Elementary proficiency</div>
-                        <div class="language-level">
-                            <div class="language-progress level-A2"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="language-item">
-                        <div class="language-name">
-                            Arabic <span class="level-label">A2</span>
-                        </div>
-                        <div class="language-description">Elementary proficiency</div>
-                        <div class="language-level">
-                            <div class="language-progress level-A2"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                    
-        <section id="contact">
-            <h3>Contact Information</h3>
-            <div class="contact-info">
-                <div>
-                    <i class="fas fa-phone"></i>
-                    <span>+49 15141334357</span>
-                </div>
-                <div>
-                    <i class="fas fa-envelope"></i>
-                    <span>kallensaleem@gmail.com</span>
-                </div>
-                <div>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Klinikum Großharden, München.</span>
-                </div>
-                <div>
-                    <i class="fas fa-calendar"></i>
-                    <span>DoB: 07/07/1998</span>
-                </div>
+                  <div class="language-item">
+                      <div class="language-name">
+                          German <span class="level-label">B1</span>
+                      </div>
+                      <div class="language-description">Intermediate proficiency</div>
+                      <div class="language-level">
+                          <div class="language-progress level-B1"></div>
+                      </div>
+                  </div>
+                  
+                  <div class="language-item">
+                      <div class="language-name">
+                          Urdu <span class="level-label">B1</span>
+                      </div>
+                      <div class="language-description">Intermediate proficiency</div>
+                      <div class="language-level">
+                          <div class="language-progress level-B1"></div>
+                      </div>
+                  </div>
+                  
+                  <div class="language-item">
+                      <div class="language-name">
+                          Tamil <span class="level-label">A2</span>
+                      </div>
+                      <div class="language-description">Elementary proficiency</div>
+                      <div class="language-level">
+                          <div class="language-progress level-A2"></div>
+                      </div>
+                  </div>
+                  
+                  <div class="language-item">
+                      <div class="language-name">
+                          Arabic <span class="level-label">A2</span>
+                      </div>
+                      <div class="language-description">Elementary proficiency</div>
+                      <div class="language-level">
+                          <div class="language-progress level-A2"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+                  
+      <section id="contact">
+          <h3>Contact Information</h3>
+          <div class="contact-info">
+              <div>
+                  <i class="fas fa-phone"></i>
+                  <span>+49 15141334357</span>
+              </div>
+              <div>
+                  <i class="fas fa-envelope"></i>
+                  <span>kallensaleem@gmail.com</span>
+              </div>
+              <div>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Klinikum Großharden, München.</span>
+              </div>
+              <div>
+                  <i class="fas fa-calendar"></i>
+                  <span>DoB: 07/07/1998</span>
+              </div>
 
-            </div>
+          </div>
 
-            <div class="buttons">
-                <a href="mailto:kallensaleem@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
-                <a href="https://www.linkedin.com/in/muhammed-saleem-kallan-499227127/" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/saleemkallen" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </section>
+          <div class="buttons">
+              <a href="mailto:kallensaleem@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
+              <a href="https://www.linkedin.com/in/muhammed-saleem-kallan-499227127/" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+              <a href="https://github.com/saleemkallen" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+      </section>
 
-    </main>
-    
-    <!-- Demo Modals -->
-    <div id="chatbot-demo-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('chatbot-demo-modal')">&times;</span>
-            <div class="modal-header">
-                <h3>AI-Driven Chatbot Demo</h3>
-            </div>
-            <div class="modal-body">
-                <p>This demonstration showcases my AI-driven chatbot developed during my Master's thesis at Bosch and Siemens. The chatbot leverages large language models, retrieval augmented generation (RAG), and Elasticsearch to provide accurate responses to internal knowledge queries.</p>
-                <iframe class="modal-iframe" src="about:blank" data-src="0408(3).mp4"></iframe>
-                <p><em>Note: In a live implementation, this would be connected to the actual chatbot project.</em></p>
-            </div>
-        </div>
-    </div>
-    
-    <div id="data-viz-demo-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('data-viz-demo-modal')">&times;</span>
-            <div class="modal-header">
-                <h3>Data Visualization Demo</h3>
-            </div>
-            <div class="modal-body">
-                <p>This demo shows the demo of the interactive cover page for a PBI report. Further informations cant be shown due to data security regulations </p>
-                <iframe class="modal-iframe" src="about:blank" data-src="PBI_Dashbord_UI.png"></iframe>
-                <p><em>Note: In a live implementation, this would be connected to actual Power BI dashboards.</em></p>
-            </div>
-        </div>
-    </div>
-    
-    
-    
-    <div id="3d-design-demo-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('3d-design-demo-modal')">&times;</span>
-            <div class="modal-header">
-                <h3>3D Design Portfolio</h3>
-            </div>
-            <div class="modal-body">
-                <p>This demonstration showcases my 3D modeling work using Lua programming and IceSL, featuring the centrifugal single vane diagonal pump and various gear systems I've designed.</p>
-                <iframe class="modal-iframe" src="about:blank" data-src="pump demo.mp4"></iframe>
-                <p><em>Note: In a live implementation, this would display actual 3D models.</em></p>
-            </div>
-        </div>
-    </div>
-    <div id="pdf-demo1-modal" class="modal">
+  </main>
+  
+  <!-- Demo Modals -->
+  <div id="chatbot-demo-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('chatbot-demo-modal')">&times;</span>
+          <div class="modal-header">
+              <h3>AI-Driven Chatbot Demo</h3>
+          </div>
+          <div class="modal-body">
+              <p>This demonstration showcases my AI-driven chatbot developed during my Master's thesis at Bosch and Siemens. The chatbot leverages large language models, retrieval augmented generation (RAG), and Elasticsearch to provide accurate responses to internal knowledge queries.</p>
+              <iframe class="modal-iframe" src="about:blank" data-src="0408(3).mp4"></iframe>
+              <p><em>Note: In a live implementation, this would be connected to the actual chatbot project.</em></p>
+          </div>
+      </div>
+  </div>
+  
+  <div id="data-viz-demo-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('data-viz-demo-modal')">&times;</span>
+          <div class="modal-header">
+              <h3>Data Visualization Demo</h3>
+          </div>
+          <div class="modal-body">
+              <p>This demo shows the demo of the interactive cover page for a PBI report. Further informations cant be shown due to data security regulations </p>
+              <iframe class="modal-iframe" src="about:blank" data-src="PBI_Dashbord_UI.png"></iframe>
+              <p><em>Note: In a live implementation, this would be connected to actual Power BI dashboards.</em></p>
+          </div>
+      </div>
+  </div>
+  
+  
+  
+  <div id="3d-design-demo-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('3d-design-demo-modal')">&times;</span>
+          <div class="modal-header">
+              <h3>3D Design Portfolio</h3>
+          </div>
+          <div class="modal-body">
+              <p>This demonstration showcases my 3D modeling work using Lua programming and IceSL, featuring the centrifugal single vane diagonal pump and various gear systems I've designed.</p>
+              <iframe class="modal-iframe" src="about:blank" data-src="pump demo.mp4"></iframe>
+              <p><em>Note: In a live implementation, this would display actual 3D models.</em></p>
+          </div>
+      </div>
+  </div>
+  
+  <div id="pdf-demo1-modal" class="modal">
       <div class="modal-content">
           <span class="close-modal" onclick="closeModal('pdf-demo1-modal')">&times;</span>
           <div class="modal-header">
-              <h3>Project Demo 1</h3>
+              <h3>Land Use and Land Cover Analysis - GIS Project</h3>
           </div>
           <div class="modal-body">
-              <p>This demonstration showcases [brief description of project 1].</p>
-              <iframe class="modal-iframe" src="about:blank" data-src="project1.pdf"></iframe>
-              <p><em>Note: Replace "project1.pdf" with your actual PDF filename.</em></p>
+              <p>This poster presents a comprehensive land use and land cover analysis for the Freising region in Bavaria, Germany. The study identifies critical environmental factors including:</p>
+              <ul style="margin-bottom: 15px;">
+                  <li>Erosion-prone zones requiring sustainable land management</li>
+                  <li>NDVI vegetation health analysis across 2019-2022</li>
+                  <li>Soil composition analysis and classification</li>
+                  <li>Forest condition monitoring showing climate impact on regional forests</li>
+              </ul>
+              <iframe class="modal-iframe" src="about:blank" data-src="GIS_Land_use_Land_Cover.pdf"></iframe>
+              <p><em>The analysis highlights key areas where conservation practices or reforestation would be more beneficial than intensive agriculture based on LS and K factor measurements.</em></p>
           </div>
       </div>
   </div>
@@ -1158,136 +1218,336 @@
       <div class="modal-content">
           <span class="close-modal" onclick="closeModal('pdf-demo2-modal')">&times;</span>
           <div class="modal-header">
-              <h3>Project Demo 2</h3>
+              <h3>Drought Resilience in Native and Non-Native Tree Species</h3>
           </div>
           <div class="modal-body">
-              <p>This demonstration showcases [brief description of project 2].</p>
-              <iframe class="modal-iframe" src="about:blank" data-src="project2.pdf"></iframe>
-              <p><em>Note: Replace "project2.pdf" with your actual PDF filename.</em></p>
+              <p>This research examines the drought resilience of three tree species in Southern Germany using dendroecological methods:</p>
+              <ul style="margin-bottom: 15px;">
+                  <li>Compared growth responses of Douglas Fir, Norway Spruce, and Pedunculate Oak to the 1976 and 2003 droughts</li>
+                  <li>Analyzed long-term climatic influences on tree growth using response function analysis</li>
+                  <li>Evaluated climate adaptation potential of non-native species (Douglas Fir) vs. native species</li>
+                  <li>Applied statistical validation using R-squared values and Wilcoxon rank-sum tests</li>
+              </ul>
+              <iframe class="modal-iframe" src="about:blank" data-src="Time_series_analysis.pdf"></iframe>
+              <p><em>The findings suggest Pedunculate Oak shows the highest drought resilience, while Douglas Fir demonstrates improving adaptation over time, making it a potential alternative for climate-resilient forestry.</em></p>
           </div>
       </div>
   </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Muhammed Saleem Kallan. All rights reserved.</p>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/muhammed-saleem-kallan-499227127/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/saleemkallen" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/yourtwitterhandle" target="_blank"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
+  <!-- Galaxy background controls -->
+  <div class="galaxy-controls" id="galaxyControls">
+      <div class="galaxy-control-title">
+          <span>Galaxy Background Settings</span>
+          <button id="toggleControls">Show</button>
+      </div>
+      <div class="controls-content" id="controlsContent">
+          <div class="slider-container">
+              <label for="starCount">Stars:</label>
+              <input type="range" id="starCount" min="50" max="300" value="150">
+              <span class="value-display" id="starCountValue">150</span>
+          </div>
+          <div class="slider-container">
+              <label for="starSize">Max Size:</label>
+              <input type="range" id="starSize" min="1" max="5" step="0.5" value="3">
+              <span class="value-display" id="starSizeValue">3</span>
+          </div>
+          <div class="slider-container">
+              <label for="starOpacity">Opacity:</label>
+              <input type="range" id="starOpacity" min="0.1" max="1" step="0.1" value="0.8">
+              <span class="value-display" id="starOpacityValue">0.8</span>
+          </div>
+          <div class="slider-container">
+              <label for="cometCount">Comets:</label>
+              <input type="range" id="cometCount" min="0" max="10" value="5">
+              <span class="value-display" id="cometCountValue">5</span>
+          </div>
+          <div style="display: flex; justify-content: center; margin-top: 10px;">
+              <button class="control-btn" id="applyBtn">Apply</button>
+              <button class="control-btn" id="resetBtn">Reset</button>
+          </div>
+      </div>
+  </div>
 
-    <script>
-        // Collapsible sections
-        document.querySelectorAll('.collapsible-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const section = header.parentElement;
-                section.classList.toggle('collapsed');
-            });
-        });
+  <footer>
+      <div class="galaxy-background" id="footerGalaxyBackground"></div>
+      <div class="container">
+          <p>&copy; 2025 Muhammed Saleem Kallan. All rights reserved.</p>
+          <div class="social-icons">
+              <a href="https://www.linkedin.com/in/muhammed-saleem-kallan-499227127/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/saleemkallen" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://twitter.com/yourtwitterhandle" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+      </div>
+  </footer>
 
-        // Dark mode toggle
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('change', () => {
-            document.body.classList.toggle('dark-mode', themeToggle.checked);
-            // Save preference to local storage
-            localStorage.setItem('darkMode', themeToggle.checked);
-        });
+  <script>
+      // Default settings for galaxy background
+      let settings = {
+          starCount: 150,
+          starSize: 3,
+          starOpacity: 0.8,
+          cometCount: 5
+      };
+      
+      // Update slider displays
+      function updateSliderDisplays() {
+          document.getElementById('starCountValue').textContent = settings.starCount;
+          document.getElementById('starSizeValue').textContent = settings.starSize;
+          document.getElementById('starOpacityValue').textContent = settings.starOpacity;
+          document.getElementById('cometCountValue').textContent = settings.cometCount;
+      }
+      
+      // Initialize slider values
+      document.getElementById('starCount').value = settings.starCount;
+      document.getElementById('starSize').value = settings.starSize;
+      document.getElementById('starOpacity').value = settings.starOpacity;
+      document.getElementById('cometCount').value = settings.cometCount;
+      updateSliderDisplays();
+      
+      // Create the galaxy background
+      function createGalaxy(containerId) {
+          const galaxyBackground = document.getElementById(containerId);
+          if (!galaxyBackground) return;
+          
+          // Clear existing stars
+          galaxyBackground.innerHTML = '';
+          
+          // Create stars
+          for (let i = 0; i < settings.starCount; i++) {
+              const star = document.createElement('div');
+              star.className = 'star';
+              
+              // Random size between 1px and max star size
+              const size = Math.random() * (settings.starSize - 1) + 1;
+              star.style.width = `${size}px`;
+              star.style.height = `${size}px`;
+              
+              // Random position
+              const posX = Math.random() * 100;
+              const posY = Math.random() * 100;
+              star.style.left = `${posX}%`;
+              star.style.top = `${posY}%`;
+              
+              // Random animation delay
+              const delay = Math.random() * 6;
+              star.style.animationDelay = `${delay}s`;
+              
+              // Set opacity for animation
+              star.style.animation = `twinkle 6s infinite`;
+              
+              // Add star to galaxy
+              galaxyBackground.appendChild(star);
+          }
+          
+          // Create comets/shooting stars
+          for (let i = 0; i < settings.cometCount; i++) {
+              createMovingStar(containerId);
+          }
+      }
+      
+      function createMovingStar(containerId) {
+          const galaxyBackground = document.getElementById(containerId);
+          if (!galaxyBackground) return;
+          
+          const movingStar = document.createElement('div');
+          movingStar.className = 'star moving-star';
+          
+          // Slightly larger than regular stars
+          const size = Math.random() * 3 + 2;
+          movingStar.style.width = `${size}px`;
+          movingStar.style.height = `${size}px`;
+          
+          // Start position (off-screen)
+          const startX = -5;
+          const startY = Math.random() * 100;
+          movingStar.style.left = `${startX}%`;
+          movingStar.style.top = `${startY}%`;
+          
+          // Add to galaxy
+          galaxyBackground.appendChild(movingStar);
+          
+          // Animate movement
+          const duration = Math.random() * 10000 + 5000; // 5-15 seconds
+          
+          movingStar.style.opacity = settings.starOpacity;
+          movingStar.style.transition = `transform ${duration}ms linear, opacity 1s`;
+          
+          setTimeout(() => {
+              movingStar.style.transform = 'translateX(110vw)';
+          }, 100);
+          
+          // Remove after animation and create a new one
+          setTimeout(() => {
+              if (document.body.contains(movingStar)) {
+                  movingStar.remove();
+                  createMovingStar(containerId);
+              }
+          }, duration + 1000);
+      }
+      
+      // Apply button click handler
+      document.getElementById('applyBtn').addEventListener('click', function() {
+          settings.starCount = parseInt(document.getElementById('starCount').value);
+          settings.starSize = parseFloat(document.getElementById('starSize').value);
+          settings.starOpacity = parseFloat(document.getElementById('starOpacity').value);
+          settings.cometCount = parseInt(document.getElementById('cometCount').value);
+          
+          createGalaxy('galaxyBackground');
+          createGalaxy('footerGalaxyBackground');
+          updateSliderDisplays();
+      });
+      
+      // Reset button click handler
+      document.getElementById('resetBtn').addEventListener('click', function() {
+          settings = {
+              starCount: 150,
+              starSize: 3,
+              starOpacity: 0.8,
+              cometCount: 5
+          };
+          
+          document.getElementById('starCount').value = settings.starCount;
+          document.getElementById('starSize').value = settings.starSize;
+          document.getElementById('starOpacity').value = settings.starOpacity;
+          document.getElementById('cometCount').value = settings.cometCount;
+          
+          createGalaxy('galaxyBackground');
+          createGalaxy('footerGalaxyBackground');
+          updateSliderDisplays();
+      });
+      
+      // Update display values when sliders change
+      document.getElementById('starCount').addEventListener('input', function() {
+          document.getElementById('starCountValue').textContent = this.value;
+      });
+      
+      document.getElementById('starSize').addEventListener('input', function() {
+          document.getElementById('starSizeValue').textContent = this.value;
+      });
+      
+      document.getElementById('starOpacity').addEventListener('input', function() {
+          document.getElementById('starOpacityValue').textContent = this.value;
+      });
+      
+      document.getElementById('cometCount').addEventListener('input', function() {
+          document.getElementById('cometCountValue').textContent = this.value;
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+    // Toggle controls visibility
+    document.getElementById('toggleControls').addEventListener('click', function () {
+        const galaxyControls = document.getElementById('galaxyControls');
+        galaxyControls.classList.toggle('controls-expanded');
+        this.textContent = galaxyControls.classList.contains('controls-expanded') ? 'Hide' : 'Show';
+    });
 
-        // Check for saved preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            themeToggle.checked = true;
-            document.body.classList.add('dark-mode');
-        }
+    // Remove 'collapsed' class to keep all sections expanded on load
+    document.querySelectorAll('.collapsible-section').forEach(section => {
+        section.classList.remove('collapsed');
+    });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (this.getAttribute('href') === '#') return;
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+    // Enable click-to-collapse/toggle
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const section = header.parentElement;
+            section.classList.toggle('collapsed');
         });
+    });
+});
 
-        // Download CV functionality
-        document.getElementById('downloadCV').addEventListener('click', function(e) {
-            // This will actually download the CV file if it exists
-            // If the file doesn't exist yet, you can uncomment the alert below
-            // e.preventDefault();
-            // alert('CV download functionality would be implemented here in a real website.');
-        });
 
-        // Function to check if tech-bg.jpg exists, if not, use a fallback color
-        window.addEventListener('load', function() {
-            const header = document.querySelector('header');
-            const img = new Image();
-            img.src = 'tech-bg.jpg';
-            img.onerror = function() {
-                header.style.backgroundImage = 'none';
-                header.style.backgroundColor = 'var(--primary-color)';
-                header.style.animation = 'none';
-            };
-        });
-        
-        // Modal functions
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
-            
-            // Set the iframe src only when opening to improve performance
-            const iframe = modal.querySelector('.modal-iframe');
-            if (iframe && iframe.getAttribute('src') === 'about:blank') {
-                const dataSrc = iframe.getAttribute('data-src');
-                if (dataSrc) {
-                    iframe.setAttribute('src', dataSrc);
-                }
-            }
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-        }
-        
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
-            
-            modal.style.display = 'none';
-            document.body.style.overflow = ''; // Restore scrolling
-        }
-        
-        // Close modal when clicking outside of modal content
-        window.onclick = function(event) {
-            document.querySelectorAll('.modal').forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = ''; // Restore scrolling
-                }
-            });
-        }
-        
-        // Close modal when pressing escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    if (modal.style.display === 'block') {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = ''; // Restore scrolling
-                    }
-                });
-            }
-        });
-    </script>
+      // Dark mode toggle
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('change', () => {
+          document.body.classList.toggle('dark-mode', themeToggle.checked);
+          // Save preference to local storage
+          localStorage.setItem('darkMode', themeToggle.checked);
+      });
+
+      // Check for saved preference
+      if (localStorage.getItem('darkMode') === 'true') {
+          themeToggle.checked = true;
+          document.body.classList.add('dark-mode');
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+              e.preventDefault();
+              
+              if (this.getAttribute('href') === '#') return;
+              
+              const targetId = this.getAttribute('href');
+              const targetElement = document.querySelector(targetId);
+              
+              if (targetElement) {
+                  window.scrollTo({
+                      top: targetElement.offsetTop - 70,
+                      behavior: 'smooth'
+                  });
+              }
+          });
+      });
+      
+      // Modal functions
+      function openModal(modalId) {
+          const modal = document.getElementById(modalId);
+          if (!modal) return;
+          
+          // Set the iframe src only when opening to improve performance
+          const iframe = modal.querySelector('.modal-iframe');
+          if (iframe && iframe.getAttribute('src') === 'about:blank') {
+              const dataSrc = iframe.getAttribute('data-src');
+              if (dataSrc) {
+                  iframe.setAttribute('src', dataSrc);
+              }
+          }
+          
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+      }
+      
+      function closeModal(modalId) {
+          const modal = document.getElementById(modalId);
+          if (!modal) return;
+          
+          modal.style.display = 'none';
+          document.body.style.overflow = ''; // Restore scrolling
+      }
+      
+      // Close modal when clicking outside of modal content
+      window.onclick = function(event) {
+          document.querySelectorAll('.modal').forEach(modal => {
+              if (event.target === modal) {
+                  modal.style.display = 'none';
+                  document.body.style.overflow = ''; // Restore scrolling
+              }
+          });
+      }
+      
+      // Close modal when pressing escape key
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+              document.querySelectorAll('.modal').forEach(modal => {
+                  if (modal.style.display === 'block') {
+                      modal.style.display = 'none';
+                      document.body.style.overflow = ''; // Restore scrolling
+                  }
+              });
+          }
+      });
+      
+      // Initialize galaxy backgrounds when page loads
+      window.addEventListener('load', function() {
+          createGalaxy('galaxyBackground');
+          createGalaxy('footerGalaxyBackground');
+          
+          // Collapse all sections by default except the first one
+         // document.querySelectorAll('section').forEach((section, index) => {
+          //   if (index > 0) {
+          //        section.classList.add('collapsed');
+           //   }
+         // });
+      });
+  </script>
 </body>
 </html>
