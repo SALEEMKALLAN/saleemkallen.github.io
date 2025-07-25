@@ -973,6 +973,8 @@ Currently based in Germany and actively improving my German language skills, I'm
                     </ul>
                     <div class="buttons">
                         <button class="btn btn-demo" onclick="openModal('chatbot-demo-modal')"><i class="fas fa-desktop"></i> View Demo</button>
+                        <button class="btn btn-demo" onclick="openModal('thesis-report-modal')"><i class="fas fa-file-pdf"></i> View Master Thesis Report</button>
+                        <button class="btn btn-demo" onclick="openModal('thesis-presentation-modal')"><i class="fas fa-file-pdf"></i> View Master Thesis Presentation</button>
                     </div>
                 </div>
 
@@ -1368,6 +1370,31 @@ Currently based in Germany and actively improving my German language skills, I'm
               </ul>
               <iframe class="modal-iframe" src="about:blank" data-src="Time_series_analysis.pdf"></iframe>
               <p><em>The findings suggest Pedunculate Oak shows the highest drought resilience, while Douglas Fir demonstrates improving adaptation over time, making it a potential alternative for climate-resilient forestry.</em></p>
+          </div>
+      </div>
+  </div>
+
+  <!-- Add these modals just after your other PDF modals, before </footer> -->
+  <div id="thesis-report-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('thesis-report-modal')">&times;</span>
+          <div class="modal-header">
+              <h3>Master Thesis Report</h3>
+          </div>
+          <div class="modal-body">
+              <iframe class="modal-iframe" src="about:blank" data-src="Master thesis report.pdf"></iframe>
+          </div>
+      </div>
+  </div>
+
+  <div id="thesis-presentation-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('thesis-presentation-modal')">&times;</span>
+          <div class="modal-header">
+              <h3>Master Thesis Presentation</h3>
+          </div>
+          <div class="modal-body">
+              <iframe class="modal-iframe" src="about:blank" data-src="Master Thesis Presentation.pdf"></iframe>
           </div>
       </div>
   </div>
